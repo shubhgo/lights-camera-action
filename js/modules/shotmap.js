@@ -68,35 +68,53 @@ d3.json("data/time_1990.json", function(error, data) {
 });
 
 var reloadMapWithTimeZone = function(timePeriod) {
+    duration = 200;
     timePeriodFile = 'data/map/map_' + timePeriod + '.json';
     console.log('reloadMapWithTimeZone: ' + timePeriodFile);
+    svg.selectAll(".dot")
+        .transition()
+        .duration(duration)
+        .ease("quad")
+        .style('opacity', 0);
 
-    d3.json(timePeriodFile, function(error, data) {
-        // console.log(data);
-        svg.selectAll(".dot")
-            .data(data)
-            .enter().append("rect")
-            .attr("class", "dot")
-            // .attr("r", 3.5)
-            .attr("x", function(d) {
-                if (d.Longitude) {
-                    return x(d.Longitude);
-                } else {
-                    return 0
-                }
-            })
-            .attr("y", function(d) {
-                if (d.Latitude) {
-                    return y(d.Latitude);
-                } else {
-                    return 0
-                }
-                // return y(d.Latitude); 
-            })
-            .attr('width', 10)
-            .attr('height', 10);
-        // .style("fill", 'red' );
-    });
+    setTimeout(function() {
+        d3.json(timePeriodFile, function(error, data) {
+            console.log('data loaded');
+
+            var spotSquares = svg.selectAll(".dot")
+                .data(data);
+
+            spotSquares.enter().append("rect")
+                .attr("class", "dot");
+
+            spotSquares
+                .attr("x", function(d) {
+                    if (d.long) {
+                        return x(d.long);
+                    } else {
+                        return 0
+                    }
+                })
+                .attr("y", function(d) {
+                    if (d.lat) {
+                        return y(d.lat);
+                    } else {
+                        return 0
+                    }
+                    // return y(d.Latitude); 
+                })
+                .attr('width', 10)
+                .attr('height', 10);
+
+            spotSquares
+                .transition()
+                .duration(duration)
+                .ease("quad")
+                .style('opacity', 1);
+
+            spotSquares.exit().remove();
+        });
+    }, duration);
 }
 
 var filter = function(filter, value) {
