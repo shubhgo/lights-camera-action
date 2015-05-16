@@ -50,6 +50,10 @@ d3.json("data/time_1990.json", function(error, data) {
     .attr('height', 10);
     // .style("fill", 'red' );
 });
+
+var updateMap = function (title){
+  console.log('updateMap: '+title);
+}
 // d3.tsv("data.tsv", function(error, data) {
 //   data.forEach(function(d) {
 //     d.sepalLength = +d.sepalLength;
