@@ -51,8 +51,21 @@ d3.json("data/time_1990.json", function(error, data) {
     // .style("fill", 'red' );
 });
 
-var updateMap = function (title){
-  console.log('updateMap: '+title);
+var reloadMapWithTimeZone = function (timeZone){
+  timeZoneFile = 'data/map/map_'+timeZone+'.json';
+  console.log('reloadMapWithTimeZone: '+timeZoneFile);
+}
+
+var filter = function (filter,value) {
+  if (filter=='timerperiod') {
+    console.log('timeperiod '+ value);
+    reloadMapWithTimeZone(value);
+  };
+  if (filter=='movietable') {
+
+  };
+  if (filter=='spotmap') {};
+  if (filter=='search') {};
 }
 // d3.tsv("data.tsv", function(error, data) {
 //   data.forEach(function(d) {
