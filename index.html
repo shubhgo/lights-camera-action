@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+<!-- <link rel="icon" 
+      type="image/ico" 
+      href="assets/images/pollster.ico">
+ -->  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Lights Camera Action</title>
+  <meta name="description" content="">
+  <!-- Bootstrap imports -->
+  <script src="js/lib/jquery.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <script src="js/lib/bootstrap.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/lib/d3.js"></script>
+  <script src="js/lib/react.js"></script>
+</head>
+<body>
+<div class="container container-non-responsive">
+<div class="row">
+<!-- spot map -->
+<div class="col-xs-9 lca-spot-map">
+  
+</div>
+<!-- movie table -->
+<div class="col-xs-3 lca-movie-table">
+      <table class="table table-hover sg-voterdash-table">
+            <thead>
+              <tr>
+                <th class='col-sm-10'>Movie</th>
+<!--                 <th class='col-sm-1'>Rating</th>
+                <th class='col-sm-1'>Scenes</th>
+ -->                <!-- <th class='col-sm-2' style='text-align:center;'>Action</th> -->
+              </tr>
+            </thead>
+            <tbody id='lca-movie-table'>
+              <tr>
+                <td class='sg-cell-chart'><div class='sg-cell-chart sg-cell-chart-training' style="width: 5%;"><p class='sg-cell-chart'>Boost Media</p></div></td>
+<!--                 <td>5%</td>
+                <td>$0.10</td>
+ -->              </tr>
+              <tr>
+            <td class='sg-cell-chart'><div class='sg-cell-chart sg-cell-chart-training' style="width: 30%;"><p class='sg-cell-chart'>Nike</p></div></td>
+<!--             <td>30%</td>
+            <td>$0.10</td>
+ -->              </tr>
+              <tr>
+            <td class='sg-cell-chart'><div class='sg-cell-chart' style="width: 100%;"><p class='sg-cell-chart'>Geiko</p></div></td>
+<!--             <td>100%</td>
+            <td>$0.05</td>
+ -->              </tr>
+              <tr>
+            <td class='sg-cell-chart'><div class='sg-cell-chart' style="width: 0%;"><p class='sg-cell-chart'>Ashby Flowers</p></div></td>
+<!--             <td>0%</td>
+            <td>$0.05</td>
+ -->              </tr>
+              <tr>
+            <td class='sg-cell-chart'><div class='sg-cell-chart' style="width: 40%;"><p class='sg-cell-chart'>The Station</p></div></td>
+<!--             <td>40%</td>
+            <td>$0.10</td>
+ -->              </tr>
+            </tbody>
+          </table>
+
+</div>
+</div>
+<div class="row lca-time-bar">
+<!-- time period bar -->
+  <div class="col-xs-1"><button type="button" class="btn btn-default">1900-09</button></div>
+  <div class="col-xs-1"><button type="button" class="btn btn-default">1910-19</button></div>
+  <div class="col-xs-1"><button type="button" class="btn btn-default">1920-29</button></div>
+  <div class="col-xs-1"><button type="button" class="btn btn-default">1930-39</button></div>
+  <div class="col-xs-1"><button type="button" class="btn btn-default">1940-49</button></div>
+  <div class="col-xs-1"><button type="button" class="btn btn-default">Default</button></div>
+  <div class="col-xs-1"><button type="button" class="btn btn-default">Default</button></div>
+  <div class="col-xs-1"><button type="button" class="btn btn-default">Default</button></div>
+  <div class="col-xs-1"><button type="button" class="btn btn-default">Default</button></div>
+  <div class="col-xs-1"><button type="button" class="btn btn-default">Default</button></div>
+  <div class="col-xs-1"><button type="button" class="btn btn-default">Default</button></div>
+  <div class="col-xs-1"><button type="button" class="btn btn-default">Default</button></div>
+</div>
+  </div>
+  <script src="js/modules/shotmap.js"></script>
+  <script src="js/modules/movieTable.js"></script>
+</body>
+</html>

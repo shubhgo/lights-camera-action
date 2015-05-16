@@ -1,0 +1,36 @@
+@lcaYellow:#FFCD00;
+@lcaBlack:#000000;
+
+.container-non-responsive {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    /* Set your desired site width */
+    width: 900px;
+}
+.lca-spot-map{
+	height: 675px;
+	background: url('../images/sfmapDark.png');
+    background-size: 675px 675px;
+    padding: 0px;
+}
+.dot{
+	fill:none;
+	stroke:@lcaYellow;
+}
+
+.debug-border{
+	border-width: 1px;
+	border-color: @lcaBlack;
+	border-style: solid;
+}
+.table > tbody > tr > td.sg-cell-chart{
+  padding: 0;
+  background-color: darken(#ffffff, 20%);
+}
+div.sg-cell-chart{
+  padding:0px;
+  height: 50px;
+  background-color: darken(@lcaYellow, 10%);
+}
