@@ -1,12 +1,16 @@
 var MovieTitleRow = React.createClass({
 	render: function() {
 		var movieRows = this.props.data.map(function (rowData) {
-			var rowWidthStyle = {width: '20%'};
+			var rowWidth = '10%';
+			if(rowData.shotCount*10>100){ rowWidth = '100%'; }
+			else{ rowWidth = String(rowData.shotCount*10)+'%'}
+
+			var rowWidthStyle = {width: rowWidth};
 			return(
 				<tr>
-					<td className='sg-cell-chart'>
-						<div className='sg-cell-chart sg-cell-chart-training' style={rowWidthStyle}>
-							<p className='sg-cell-chart'>{rowData.title}</p>
+					<td className='lca-cell-chart'>
+						<div className='lca-cell-chart' style={rowWidthStyle}>
+							<p className='lca-cell-chart'>{rowData.title}</p>
 						</div>
 					</td>
 				</tr>

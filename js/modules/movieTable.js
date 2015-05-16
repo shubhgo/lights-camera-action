@@ -1,12 +1,16 @@
 var MovieTitleRow = React.createClass({displayName: "MovieTitleRow",
 	render: function() {
 		var movieRows = this.props.data.map(function (rowData) {
-			var rowWidthStyle = {width: '20%'};
+			var rowWidth = '10%';
+			if(rowData.shotCount*10>100){ rowWidth = '100%'; }
+			else{ rowWidth = String(rowData.shotCount*10)+'%'}
+
+			var rowWidthStyle = {width: rowWidth};
 			return(
 				React.createElement("tr", null, 
-					React.createElement("td", {className: "sg-cell-chart"}, 
-						React.createElement("div", {className: "sg-cell-chart sg-cell-chart-training", style: rowWidthStyle}, 
-							React.createElement("p", {className: "sg-cell-chart"}, rowData.title)
+					React.createElement("td", {className: "lca-cell-chart"}, 
+						React.createElement("div", {className: "lca-cell-chart", style: rowWidthStyle}, 
+							React.createElement("p", {className: "lca-cell-chart"}, rowData.title)
 						)
 					)
 				)
