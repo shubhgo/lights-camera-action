@@ -67,10 +67,10 @@ d3.json("data/time_1990.json", function(error, data) {
     // .style("fill", 'red' );
 });
 
-var reloadMapWithTimeZone = function (timePeriod) {
-    duration = 200;
-    timePeriodFile = 'data/map/map_' + timePeriod + '.json';
-    console.log('reloadMapWithTimeZone: ' + timePeriodFile);
+var reloadMapWithTimePeriod = function (timePeriod) {
+    var duration = 200;
+    var timePeriodFile = 'data/map/map_' + timePeriod + '.json';
+    console.log('reloadMapWithTimePeriod: ' + timePeriodFile);
     svg.selectAll(".dot")
         .transition()
         .duration(duration)
@@ -79,8 +79,6 @@ var reloadMapWithTimeZone = function (timePeriod) {
 
     setTimeout(function() {
         d3.json(timePeriodFile, function(error, data) {
-            console.log('data loaded');
-
             var spotSquares = svg.selectAll(".dot")
                 .data(data);
 
@@ -120,8 +118,9 @@ var reloadMapWithTimeZone = function (timePeriod) {
 var filter = function(filter, value) {
         if (filter == 'timerperiod') {
             console.log('timeperiod ' + value);
-            reloadMapWithTimeZone(value);
-            reloadMovieTableWithTimeZone(value);
+            reloadMapWithTimePeriod(value);
+
+            mt.reloadMovieWithTimePeriod(value);
         };
         if (filter == 'movietable') {
 

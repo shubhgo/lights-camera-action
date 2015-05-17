@@ -1,63 +1,183 @@
-var MovieTitleRow = React.createClass({displayName: "MovieTitleRow",
-	handleClick: function(event) {
-		console.log(this.props.data);
-		console.log('movie title clicked');
-		// updateMap(this.props.data.title);
-	},
-	render: function() {
-		return(
-		React.createElement("td", {onClick: this.handleClick, className: "lca-cell-chart"}, 
-			React.createElement("div", {className: "lca-cell-chart", style: this.props.data.style}, 
-				React.createElement("p", {className: "lca-cell-chart"}, this.props.data.title)
-			)
-		)
-		)
-	}
-});
+var mt = function() {
+    var exports = {};
+    var margin = {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+        },
+        width = 180 - margin.left - margin.right,
+        rowWidth = 25,
+        height = 675 - margin.top - margin.bottom;
 
-var MovieTitleTable = React.createClass({displayName: "MovieTitleTable",
-	render: function() {
-		var movieRows = this.props.data.map(function (rowData) {
-			var rowWidth = '10%';
-			if(rowData.shotCount*10>100){ rowWidth = '100%'; }
-			else{ rowWidth = String(rowData.shotCount*10)+'%'}
+    var x = d3.scale.linear()
+        .range([0, width])
+        .domain([0, 10]);
 
-			rowData.style = {width: rowWidth};
-			// var rowWidthStyle = {width: rowWidth};
-			return(
-				React.createElement("tr", null, 
-					React.createElement(MovieTitleRow, {data: rowData})
-				)
-				);
-		}.bind(this));
-		return (
-			React.createElement("div", null, 
-			movieRows
-			)
-		)
-	}
-});
+    var y = d3.scale.linear();
+    // .range([0, height]);
+    // .domain([0, ]);--> domain and range to be set by the length of data
 
-d3.json("data/movies_1990.json", function(error, data) {
-	// console.log('d3 data loaded');
-	React.render(
-		React.createElement(MovieTitleTable, {data: data}),
-		document.getElementById('lca-movie-table')
-	);
-	// console.log(data);
-});
+    // var color = d3.scale.category10();
 
-var reloadMovieTableWithTimeZone = function (timePeriod) {
-	movieTableFile = 'data/movies/movies_' + timePeriod + '.json';
-    d3.json(movieTableFile, function(error, data) {
-	// console.log('d3 data loaded');
-	React.render(
-		React.createElement(MovieTitleTable, {data: data}),
-		document.getElementById('lca-movie-table')
-	);
-	// console.log(data);
-});
-}
+    // var xAxis = d3.svg.axis()
+    //     .scale(x)
+    //     .orient("bottom");
+
+    // var yAxis = d3.svg.axis()
+    //     .scale(y)
+    //     .orient("left");
+
+    var svg = d3.select(".lca-movie-table").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    d3.json("data/movies/movies_1990.json", function(error, data) {
+        y.range([0, rowWidth * data.length])
+            .domain([0, data.length]);
+
+
+
+
+        // console.log(data);
+        svg.selectAll(".lca-movie")
+            .data(data)
+            .enter().append("rect")
+            .attr("class", "lca-movie")
+            .attr("x", 0)
+            .attr("y", function(data, index) {
+                return y(index);
+            })
+            .attr('width', function(data) {
+                if (x(data.shotCount) > width) {
+                    return width;
+                } else {
+                    return x(data.shotCount);
+                }
+            })
+            .attr('height', rowWidth - 1);
+
+        svg.selectAll(".lca-movie-label")
+            .data(data)
+            .enter().append('text')
+            .attr('class', 'lca-movie-label')
+            .attr('x', 0)
+            .attr('y', function(data, index) {
+                return y(index) - 10;
+            })
+            .attr('dy', '.16em')
+            .text(function(data) {
+                return data.title
+            });
+
+    });
+
+    exports.reloadMovieWithTimePeriod = function(timePeriod) {
+        var duration = 200;
+        var timePeriodFile = 'data/movies/movies_' + timePeriod + '.json';
+        console.log('reloadMovieWithTimePeriod: ' + timePeriodFile);
+
+        svg.selectAll(".lca-movie, .lca-movie-label")
+            .transition()
+            .duration(duration)
+            .ease("quad")
+            .style('opacity', 0);
+
+
+        setTimeout(function() {
+            d3.json(timePeriodFile, function(error, data) {
+                console.log('reloadMovieWithTimePeriod: data loaded');
+
+                var movieRow = svg.selectAll(".lca-movie")
+                    .data(data);
+
+                movieRow.enter().append("rect")
+                    .attr("class", "lca-movie");
+                movieRow
+                    .attr("x", 0)
+                    .attr("y", function(data, index) {
+                        return y(index);
+                    })
+                    .attr('width', function(data) {
+                        if (x(data.shotCount) > width) {
+                            return width;
+                        } else {
+                            return x(data.shotCount);
+                        }
+                    })
+                    .attr('height', rowWidth - 1);
+
+                var movieLabel = svg.selectAll('.lca-movie-label')
+                    .data(data);
+
+                movieLabel.enter().append('text')
+                    .attr('class', 'lca-movie-label')
+
+                movieLabel
+                    .attr('x', 0)
+                    .attr('y', function(data, index) {
+                        return y(index) - 10;
+                    })
+                    .attr('dy', '.16em')
+                    .text(function(data) {
+                        return data.title
+                    });
+
+
+                svg.selectAll(".lca-movie, .lca-movie-label")
+                    .transition()
+                    .duration(duration)
+                    .ease("quad")
+                    .style('opacity', 1);
+
+                movieLabel.exit().remove();
+                movieRow.exit().remove();
+            });
+        }, duration);
+    };
+    return exports;
+}();
+
+
+
+
+
+// var weekDay = function() {
+//     var names = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+//     var exports = {};
+//     exports.name = function(number) {
+//         return names[number];
+//     };
+//     exports.number = function(name) {
+//         return names.indexOf(name);
+//     };
+//     return exports;
+// }();
+
+// console.log(weekDay.name(weekDay.number('Sunday')));
+
+
+
+
+
+// lca-movie-table
+// var reloadMovieTableWithTimeZone = function (timePeriod) {
+// 	movieTableFile = 'data/movies/movies_' + timePeriod + '.json';
+//     d3.json(movieTableFile, function(error, data) {
+// 	// console.log('d3 data loaded');
+// 	React.render(
+// 		React.createElement(MovieTitleTable, {data: data}),
+// 		document.getElementById('lca-movie-table')
+// 	);
+// 	// console.log(data);
+// });
+// }
+
+
+
 //                 // <td class='sg-cell-chart'><div class='sg-cell-chart sg-cell-chart-training' style="width: 5%;"><p class='sg-cell-chart'>Boost Media</p></div></td>
 // var LikeButton = React.createClass({
 //   getInitialState: function() {
