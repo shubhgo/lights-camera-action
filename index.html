@@ -2,86 +2,105 @@
 <!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="lcaApp"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="lcaApp">
+<!--<![endif]-->
+
 <head>
-<!-- <link rel="icon" 
+    <!-- <link rel="icon" 
       type="image/ico" 
       href="assets/images/pollster.ico">
- -->  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Lights Camera Action</title>
-  <meta name="description" content="">
-  <!-- Bootstrap imports -->
-  <script src="js/lib/jquery.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-  <script src="js/lib/bootstrap.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/main.css">
-  <script src="js/lib/d3.js"></script>
-  <script src="js/lib/d3.tip.js"></script>
-  <script src="js/lib/react.js"></script>
-  <script src="js/lib/angular.js"></script>
-  <script src="js/modules/moviemodal.js"></script>
+ -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Lights Camera Action</title>
+    <meta name="description" content="">
+    <!-- Bootstrap imports -->
+    <script src="js/lib/jquery.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <script src="js/lib/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/lib/d3.js"></script>
+    <script src="js/lib/d3.tip.js"></script>
+    <script src="js/lib/react.js"></script>
+    <script src="js/lib/angular.js"></script>
+    <script src="js/modules/moviemodal.js"></script>
 </head>
+
 <body>
-<div class="container container-non-responsive">
-<div class="row">
-<!-- spot map -->
-<div class="col-xs-9 lca-spot-map">
-  
-</div>
-<!-- movie table -->
-<div class='col-xs-3 lca-movie-table-outer'>
-<div class=" lca-movie-table">
-
-</div>
-</div>
-</div>
-<div class="row lca-time-bar">
-<!-- time period bar -->
-  <div class="col-xs-1"><button type="button" class="btn btn-default">1900-09</button></div>
-  <div class="col-xs-1"><button type="button" class="btn btn-default" onclick="filter('timerperiod',1910,0)">1910-19</button></div>
-  <div class="col-xs-1"><button type="button" class="btn btn-default" onclick="filter('timerperiod',1920,0)">1920-29</button></div>
-  <div class="col-xs-1"><button type="button" class="btn btn-default" onclick="filter('timerperiod',1930,0)">1930-39</button></div>
-  <div class="col-xs-1"><button type="button" class="btn btn-default" onclick="filter('timerperiod',1940,0)">1940-49</button></div>
-  <div class="col-xs-1"><button type="button" class="btn btn-default" onclick="filter('timerperiod',1950,0)">1950-59</button></div>
-  <div class="col-xs-1"><button type="button" class="btn btn-default" onclick="filter('timerperiod',1960,0)">1960-69</button></div>
-  <div class="col-xs-1"><button type="button" class="btn btn-default" onclick="filter('timerperiod',1970,0)">1970-79</button></div>
-  <div class="col-xs-1"><button type="button" class="btn btn-default" onclick="filter('timerperiod',1980,0)">1980-89</button></div>
-  <div class="col-xs-1"><button type="button" class="btn btn-default" onclick="filter('timerperiod',1990,0)">1990-99</button></div>
-  <div class="col-xs-1"><button type="button" class="btn btn-default" onclick="filter('timerperiod',2000,0)">2000-09</button></div>
-  <div class="col-xs-1"><button type="button" class="btn btn-default" onclick="filter('timerperiod',2010,0)">2010-15</button></div>
-</div>
-  </div>
-  <script src="js/modules/shotmap.js"></script>
-  <script src="js/modules/movieTable.js"></script>
-
-  <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#movieModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div  ng-controller="MovieModalCtrl as mmc" class="modal fade" id="movieModal" tabindex="-1" role="dialog" aria-labelledby="movieTitle" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="movieTitle">{{movie.Title}}</h4>
-      </div>
-      <div class="modal-body">
-        <p>Year: {{movie.Year}}</p>
-        <p>Rating: {{movie.imdbRating}}</p>
-        <p>Release: {{movie.Released}}</p>
-        <img src="{{movie.Poster}}">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+    <div class="container container-non-responsive">
+        <div class="row">
+            <!-- spot map -->
+            <div class="col-xs-9 lca-spot-map">
+            </div>
+            <!-- movie table -->
+            <div class='col-xs-3 lca-movie-table-outer'>
+                <div class=" lca-movie-table">
+                </div>
+            </div>
+        </div>
+        <div class="row lca-time-bar">
+            <!-- time period bar -->
+            <div class="col-xs-1">
+                <button type="button" class="btn btn-default">1900-09</button>
+            </div>
+            <div class="col-xs-1">
+                <button type="button" class="btn btn-default" onclick="filter('timerperiod',1910,0)">1910-19</button>
+            </div>
+            <div class="col-xs-1">
+                <button type="button" class="btn btn-default" onclick="filter('timerperiod',1920,0)">1920-29</button>
+            </div>
+            <div class="col-xs-1">
+                <button type="button" class="btn btn-default" onclick="filter('timerperiod',1930,0)">1930-39</button>
+            </div>
+            <div class="col-xs-1">
+                <button type="button" class="btn btn-default" onclick="filter('timerperiod',1940,0)">1940-49</button>
+            </div>
+            <div class="col-xs-1">
+                <button type="button" class="btn btn-default" onclick="filter('timerperiod',1950,0)">1950-59</button>
+            </div>
+            <div class="col-xs-1">
+                <button type="button" class="btn btn-default" onclick="filter('timerperiod',1960,0)">1960-69</button>
+            </div>
+            <div class="col-xs-1">
+                <button type="button" class="btn btn-default" onclick="filter('timerperiod',1970,0)">1970-79</button>
+            </div>
+            <div class="col-xs-1">
+                <button type="button" class="btn btn-default" onclick="filter('timerperiod',1980,0)">1980-89</button>
+            </div>
+            <div class="col-xs-1">
+                <button type="button" class="btn btn-default" onclick="filter('timerperiod',1990,0)">1990-99</button>
+            </div>
+            <div class="col-xs-1">
+                <button type="button" class="btn btn-default" onclick="filter('timerperiod',2000,0)">2000-09</button>
+            </div>
+            <div class="col-xs-1">
+                <button type="button" class="btn btn-default" onclick="filter('timerperiod',2010,0)">2010-15</button>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+    <script src="js/modules/shotmap.js"></script>
+    <script src="js/modules/movieTable.js"></script>
+
+    <!-- Movie Detail Modal -->
+    <div ng-controller="MovieModalCtrl as mmc" class="modal fade" id="movieModal" tabindex="-1" role="dialog" aria-labelledby="movieTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="movieTitle">{{movie.Title}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Year: {{movie.Year}}</p>
+                    <p>Rating: {{movie.imdbRating}}</p>
+                    <p>Release: {{movie.Released}}</p>
+                    <img src="{{movie.Poster}}">
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
