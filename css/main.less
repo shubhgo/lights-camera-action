@@ -21,7 +21,10 @@ p {
 html {
     overflow-y: scroll;
 }
-
+body{
+  background-image: url('../images/ticks.png');
+  // background-color: @bodybackground;
+}
 .container-non-responsive {
     margin-left: auto;
     margin-right: auto;
@@ -117,7 +120,17 @@ p.lca-cell-chart {
     border-left: 15px solid transparent;
     float: left;
 }
-
+.lca-poster-img {
+    width: 270px;
+}
+.lca-page-title {
+    padding-left: 5px;
+}
+.lca-page-subtitle {
+    padding-left: 5px;
+    font-size: 20px;
+    font-weight: 300;
+}
 .lca-title {
     border: 1px solid rgba(0, 0, 0, 0.8);
     border-top-left-radius: 2px;
@@ -147,6 +160,9 @@ p.lca-cell-chart {
     border-bottom-right-radius: 2px;
 }
 
+.lca-timeperiod-header{
+    margin-top: 10px;
+}
 .lca-col-timeperiod {
     float: left;
     width: 80.5px;
@@ -163,12 +179,12 @@ p.lca-cell-chart {
 }
 
 .lca-col-timeperiod:hover, .lca-col-timeperiod:focus, .lca-col-timeperiod:active {
-    background-color: darken(@lcaWhite, 10%);
+    background-color: darken(@lcaWhite, 30%);
 
 }
 
 .lca-col-timeperiod-sel {
-    background-color: darken(@lcaWhite, 10%);
+    background-color: darken(@lcaWhite, 30%);
 }
 
 .lca-timeperiod-btn {
@@ -229,7 +245,9 @@ p.lca-cell-chart {
 #img2010 {
     background: url(../images/timeZoneMaps.png) -811px 0;
 }
-
+.sg-footer-a{
+    color: @lcaBlack;
+}
 svg {
     display: block;
     width: 100%;

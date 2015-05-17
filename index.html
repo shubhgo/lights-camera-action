@@ -20,16 +20,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <script src="js/lib/bootstrap.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"> 
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="js/lib/d3.js"></script>
     <script src="js/lib/d3.tip.js"></script>
     <script src="js/lib/react.js"></script>
     <script src="js/lib/angular.js"></script>
     <!-- // <script src="js/lib/spin.min.js"</script> -->
-      <script type="text/javascript" src="http://fgnass.github.io/spin.js/spin.min.js"></script>
-
-     <script src="js/lib/angular-spinner.min.js"></script>
+    <script type="text/javascript" src="http://fgnass.github.io/spin.js/spin.min.js"></script>
+    <script src="js/lib/angular-spinner.min.js"></script>
     <script src="js/lib/angular-loading-spinner.js"></script>
     <script src="js/modules/moviemodal.js"></script>
 </head>
@@ -37,7 +36,9 @@
 <body>
     <div class="container container-non-responsive">
         <div class="row">
-            <h1>Lights Camera Action</h1>
+            <h1 class="lca-page-title">Lights Camera Action</h1>
+            <p class="lca-page-subtitle">If you love movies, and you love San Francisco, you're bound to love this. A visualization of filming locations of movies shot in San Francisco from 1924 - 2010.
+            </p>
         </div>
         <div class="row">
             <!-- spot map -->
@@ -57,8 +58,7 @@
                 </div>
             </div>
         </div>
-        <br>
-        <div class="row">
+        <div class="row lca-timeperiod-header">
             <div class="col-sm-12 lca-reduced-padding">
                 <div class="lca-title">
                     <p>Select Time Period</p>
@@ -112,6 +112,12 @@
                 <p class="lca-timeperiod-p">2010-15</p>
             </div>
         </div>
+        <br>
+        <div class='row lca-footer'>
+            <div class='col-sm-12'>
+                <p> 2015 © <a class='sg-footer-a' href='http://shubhamgoel.me'>Shubham Goel</a></p>
+            </div>
+        </div>
     </div>
     <script src="js/modules/movieTable.js"></script>
     <script src="js/modules/shotmap.js"></script>
@@ -124,12 +130,16 @@
                     <h4 class="modal-title" id="movieTitle">{{movie.Title}}</h4>
                 </div>
                 <div class="modal-body">
-                  <span us-spinner="{radius:30, width:8, length: 16}"></span>
-
-                    <p>Year: {{movie.Year}}</p>
-                    <p>Rating: {{movie.imdbRating}}</p>
-                    <p>Release: {{movie.Released}}</p>
-                    <img src="{{movie.Poster}}">
+                    <span us-spinner="{radius:30, width:8, length: 16}"></span>
+                    <div class='row'>
+                        <div class='col-xs-6'><img class='lca-poster-img' src="{{movie.Poster}}"></div>
+                        <div class='col-xs-6'>
+                            <p>Year: {{movie.Year}}</p>
+                            <p>Rating: {{movie.imdbRating}}</p>
+                            <p>Release: {{movie.Released}}</p>
+                            <p>Polot: {{movie.Plot}}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
