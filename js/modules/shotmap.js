@@ -16,8 +16,6 @@ var sm = function() {
         bottom: 37.68,
         left: -122.55
     };
-    // new google.maps.LatLng(37.68, -122.55),//lower box
-    // new google.maps.LatLng(37.84, -122.35))
 
     var x = d3.scale.linear()
         .range([0, width])
@@ -29,14 +27,6 @@ var sm = function() {
 
     var color = d3.scale.category10();
 
-    // var xAxis = d3.svg.axis()
-    //     .scale(x)
-    //     .orient("bottom");
-
-    // var yAxis = d3.svg.axis()
-    //     .scale(y)
-    //     .orient("left");
-
     var svg = d3.select(".lca-spot-map").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -45,10 +35,10 @@ var sm = function() {
 
     d3.json("data/time_1990.json", function(error, data) {
         // console.log(data);
-        svg.selectAll(".dot")
+        svg.selectAll(".lca-spot")
             .data(data)
             .enter().append("rect")
-            .attr("class", "dot")
+            .attr("class", "lca-spot")
             // .attr("r", 3.5)
             .attr("x", function(d) {
                 if (d.Longitude) {
@@ -74,7 +64,7 @@ var sm = function() {
         var duration = 200;
         var timePeriodFile = 'data/map/map_' + timePeriod + '.json';
         console.log('reloadMapWithTimePeriod: ' + timePeriodFile);
-        svg.selectAll(".dot")
+        svg.selectAll(".lca-spot")
             .transition()
             .duration(duration)
             .ease("quad")
@@ -82,11 +72,11 @@ var sm = function() {
 
         setTimeout(function() {
             d3.json(timePeriodFile, function(error, data) {
-                var spotSquares = svg.selectAll(".dot")
+                var spotSquares = svg.selectAll(".lca-spot")
                     .data(data);
 
                 spotSquares.enter().append("rect")
-                    .attr("class", "dot");
+                    .attr("class", "lca-spot");
 
                 spotSquares
                     .attr("x", function(d) {
@@ -116,29 +106,73 @@ var sm = function() {
                 spotSquares.exit().remove();
             });
         }, duration);
-    }
+    };
+
+    exports.highlightSpotsForMovie = function(movieID) {
+
+        if (movieID == null) {
+            svg.selectAll(".lca-spot")
+                .style('stroke', '#FFCD00');
+        } else {
+            svg.selectAll(".lca-spot")
+                .style('stroke', function(data) {
+                    if (movieID == data.movieid) {
+                        return '#FFCD00';
+                    } else {
+                        return '#646464';
+                    }
+                });
+        };
+
+        // .style("stroke", function(data) {
+        //     if (data.destination == dest) {
+        //         return "#619EB5";
+        //     } else {
+        //         return "#C8C8C8";
+        //     }
+        // })
+        // .style("stroke-width", function(data) {
+        //     if (data.destination == dest) {
+        //         return 2;
+        //     } else {
+        //         return 0.5;
+        //     }
+        // })
+        // .style("stroke-opacity", function(data) {
+        //     if (data.destination == dest) {
+        //         return 1;
+        //     } else {
+        //         return 0.8;
+        //     }
+        // });
+
+    };
 
     return exports;
 }();
 
-var filter = function(filter, value) {
-        if (filter == 'timerperiod') {
-            console.log('timeperiod ' + value);
-            sm.reloadMapWithTimePeriod(value);
+var filter = function(action, value, index) {
+    if (action == 'timerperiod') {
+        sm.reloadMapWithTimePeriod(value);
+        mt.reloadMovieWithTimePeriod(value);
+    };
 
-            mt.reloadMovieWithTimePeriod(value);
-        };
-        if (filter == 'movietable') {
+    if (action == 'movieTableHover') {
+        sm.highlightSpotsForMovie(value.movieid);
+    };
 
-        };
-        if (filter == 'spotmap') {};
-        if (filter == 'search') {};
-    }
-    // d3.tsv("data.tsv", function(error, data) {
-    //   data.forEach(function(d) {
-    //     d.sepalLength = +d.sepalLength;
-    //     d.sepalWidth = +d.sepalWidth;
-    //   });
+    if (action == 'movieTableHoverEnd') {
+        sm.highlightSpotsForMovie(null);
+    };
+
+    if (action == 'movieTableSelected') {
+
+    };
+    if (action == 'spotmap') {};
+    if (action == 'search') {};
+
+};
+
 
 //   x.domain(d3.extent(data, function(d) { return d.sepalWidth; })).nice();
 //   y.domain(d3.extent(data, function(d) { return d.sepalLength; })).nice();

@@ -15,18 +15,6 @@ var mt = function() {
         .domain([0, 10]);
 
     var y = d3.scale.linear();
-    // .range([0, height]);
-    // .domain([0, ]);--> domain and range to be set by the length of data
-
-    // var color = d3.scale.category10();
-
-    // var xAxis = d3.svg.axis()
-    //     .scale(x)
-    //     .orient("bottom");
-
-    // var yAxis = d3.svg.axis()
-    //     .scale(y)
-    //     .orient("left");
 
     var svg = d3.select(".lca-movie-table").append("svg")
         .attr("width", width + margin.left + margin.right)
@@ -38,10 +26,6 @@ var mt = function() {
         y.range([0, rowWidth * data.length])
             .domain([0, data.length]);
 
-
-
-
-        // console.log(data);
         svg.selectAll(".lca-movie")
             .data(data)
             .enter().append("rect")
@@ -57,7 +41,18 @@ var mt = function() {
                     return x(data.shotCount);
                 }
             })
-            .attr('height', rowWidth - 1);
+            .attr('height', rowWidth - 1)
+
+        .on('mouseover.hideotherspots', function(d, i) {
+                filter('movieTableHover', d, i);
+            })
+            .on('mouseout.showallspots', function(d, i) {
+                filter('movieTableHoverEnd', '', '');
+            });
+        // 	.on('mouseover.dst', dstSelected)
+        // //	.on('mouseout', tip_circle.hide)
+        // 	.on('mousedown', sourceSelected);
+
 
         svg.selectAll(".lca-movie-label")
             .data(data)
@@ -95,6 +90,7 @@ var mt = function() {
 
                 movieRow.enter().append("rect")
                     .attr("class", "lca-movie");
+
                 movieRow
                     .attr("x", 0)
                     .attr("y", function(data, index) {
@@ -107,7 +103,13 @@ var mt = function() {
                             return x(data.shotCount);
                         }
                     })
-                    .attr('height', rowWidth - 1);
+                    .attr('height', rowWidth - 1)
+                    .on('mouseover.hideotherspots', function(d, i) {
+                        filter('movieTableHover', d, i);
+                    })
+                    .on('mouseout.showallspots', function(d, i) {
+                        filter('movieTableHoverEnd', '', '');
+                    });;
 
                 var movieLabel = svg.selectAll('.lca-movie-label')
                     .data(data);
@@ -123,7 +125,13 @@ var mt = function() {
                     .attr('dy', '.16em')
                     .text(function(data) {
                         return data.title
-                    });
+                    })
+                    .on('mouseover.hideotherspots', function(d, i) {
+                        filter('movieTableHover', d, i);
+                    })
+                    .on('mouseout.showallspots', function(d, i) {
+                        filter('movieTableHoverEnd', '', '');
+                    });;
 
 
                 svg.selectAll(".lca-movie, .lca-movie-label")
