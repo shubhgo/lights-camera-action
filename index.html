@@ -20,12 +20,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <script src="js/lib/bootstrap.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"> 
     <link rel="stylesheet" href="css/main.css">
     <script src="js/lib/d3.js"></script>
     <script src="js/lib/d3.tip.js"></script>
     <script src="js/lib/react.js"></script>
     <script src="js/lib/angular.js"></script>
+    <!-- // <script src="js/lib/spin.min.js"</script> -->
+      <script type="text/javascript" src="http://fgnass.github.io/spin.js/spin.min.js"></script>
+
+     <script src="js/lib/angular-spinner.min.js"></script>
+    <script src="js/lib/angular-loading-spinner.js"></script>
     <script src="js/modules/moviemodal.js"></script>
 </head>
 
@@ -119,6 +124,8 @@
                     <h4 class="modal-title" id="movieTitle">{{movie.Title}}</h4>
                 </div>
                 <div class="modal-body">
+                  <span us-spinner="{radius:30, width:8, length: 16}"></span>
+
                     <p>Year: {{movie.Year}}</p>
                     <p>Rating: {{movie.imdbRating}}</p>
                     <p>Release: {{movie.Released}}</p>

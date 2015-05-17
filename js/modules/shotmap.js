@@ -218,7 +218,8 @@ var filter = function(action, value, index) {
 
   if (action == 'spotSelected') {
     //show modal for movie
-    angular.element('#movieModal').scope().updateForMovieID(value.movieid)
+    angular.element('#movieModal').scope().updateForMovieID(value.movieid);
+    angular.element($('#movieModal')).scope().$apply();
     $('#movieModal').modal('show');
   };
 
