@@ -9,7 +9,7 @@ var mt = function() {
       bottom: 0,
       left: 0
     },
-    width = 180 - margin.left - margin.right,
+    width = 288 - margin.left - margin.right,
     rowWidth = 25,
     height = 675 - margin.top - margin.bottom;
 
@@ -74,9 +74,9 @@ var mt = function() {
           .attr('class', 'lca-movie-label')
 
         movieLabel
-          .attr('x', 0)
+          .attr('x', 3)
           .attr('y', function(data, index) {
-            return y(index) + 10;
+            return y(index) + 16;
           })
           .attr('dy', '.16em')
           .text(function(data) {
