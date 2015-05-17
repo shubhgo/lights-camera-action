@@ -1,65 +1,88 @@
-@lcaYellow:#FFCD00;
-@lcaBlack:#000000;
-@lcaWhite:#ffffff;
+@lcaYellow: #FFCD00;
+@lcaBlack: #000000;
+@lcaWhite: #ffffff;
 .container-non-responsive {
     margin-left: auto;
     margin-right: auto;
     padding-left: 15px;
     padding-right: 15px;
     /* Set your desired site width */
+    
     width: 900px;
 }
-.lca-spot-map{
-	height: 675px;
-	background: url('../images/sfmapDark.png');
+
+.lca-spot-map {
+    height: 675px;
+    background: url('../images/sfmapDark.png');
     background-size: 675px 675px;
     padding: 0px;
 }
-.dot{
-	fill:transparent;
-	stroke:@lcaYellow;
-	cursor: pointer;
+
+.dot {
+    fill: transparent;
+    stroke: @lcaYellow;
+    cursor: pointer;
 }
 
-.debug-border{
-	border-width: 1px;
-	border-color: @lcaBlack;
-	border-style: solid;
-}
-table{
- height:653px; 
-}
-tbody{
-  overflow-y: scroll;
-  height: 630px;
-  width: 100%;
-  position: absolute;
-}
-.table > tbody > tr > td.lca-cell-chart{
-  padding: 0;
-  background-color: darken(#ffffff, 20%);
-}
-div.lca-cell-chart{
-  padding:0px;
-  height: 50px;
-  background-color: darken(@lcaYellow, 10%);
-}
-p.lca-cell-chart{
-  // position: absolute;
-  // font-family: 'Bitter', serif;
-  font-weight: 100;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 16px;
-  color: @lcaWhite;
-  // -webkit-text-stroke-width: 0.5px;
-  // -webkit-text-stroke-color: lighten(@sgBlack, 40%);
-  // -webkit-font-smoothing: antialiased;
-  margin-left: 10px;
-  margin-top: 5px;
-  width: 190px;
+.debug-border {
+    border-width: 1px;
+    border-color: @lcaBlack;
+    border-style: solid;
 }
 
-.lca-movie{
-  fill: @lcaYellow;
+table {
+    height: 653px;
+}
+
+tbody {
+    overflow-y: scroll;
+    height: 630px;
+    width: 100%;
+    position: absolute;
+}
+
+.table > tbody > tr > td.lca-cell-chart {
+    padding: 0;
+    background-color: darken(#ffffff, 20%);
+}
+
+div.lca-cell-chart {
+    padding: 0px;
+    height: 50px;
+    background-color: darken(@lcaYellow, 10%);
+}
+
+p.lca-cell-chart {
+    // position: absolute;
+    // font-family: 'Bitter', serif;
+    font-weight: 100;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 16px;
+    color: @lcaWhite;
+    // -webkit-text-stroke-width: 0.5px;
+    // -webkit-text-stroke-color: lighten(@sgBlack, 40%);
+    // -webkit-font-smoothing: antialiased;
+    margin-left: 10px;
+    margin-top: 5px;
+    width: 190px;
+}
+
+.lca-movie {
+    fill: @lcaYellow;
+}
+
+.lca-movie-table-outer {
+    height: 625px;
+    overflow: auto;
+}
+
+.lca-movie-table {
+    height: 900px;
+}
+
+svg {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
