@@ -67,7 +67,7 @@ d3.json("data/time_1990.json", function(error, data) {
     // .style("fill", 'red' );
 });
 
-var reloadMapWithTimeZone = function(timePeriod) {
+var reloadMapWithTimeZone = function (timePeriod) {
     duration = 200;
     timePeriodFile = 'data/map/map_' + timePeriod + '.json';
     console.log('reloadMapWithTimeZone: ' + timePeriodFile);
@@ -121,6 +121,7 @@ var filter = function(filter, value) {
         if (filter == 'timerperiod') {
             console.log('timeperiod ' + value);
             reloadMapWithTimeZone(value);
+            reloadMovieTableWithTimeZone(value);
         };
         if (filter == 'movietable') {
 

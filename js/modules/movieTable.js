@@ -47,7 +47,17 @@ d3.json("data/movies_1990.json", function(error, data) {
 	// console.log(data);
 });
 
-
+var reloadMovieTableWithTimeZone = function (timePeriod) {
+	movieTableFile = 'data/movies/movies_' + timePeriod + '.json';
+    d3.json(movieTableFile, function(error, data) {
+	// console.log('d3 data loaded');
+	React.render(
+		React.createElement(MovieTitleTable, {data: data}),
+		document.getElementById('lca-movie-table')
+	);
+	// console.log(data);
+});
+}
 //                 // <td class='sg-cell-chart'><div class='sg-cell-chart sg-cell-chart-training' style="width: 5%;"><p class='sg-cell-chart'>Boost Media</p></div></td>
 // var LikeButton = React.createClass({
 //   getInitialState: function() {
