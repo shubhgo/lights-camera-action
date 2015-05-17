@@ -110,7 +110,10 @@ var sm = function() {
                     .attr('width', 10)
                     .attr('height', 10)
                     .on('mouseover', tip.show)
-                    .on('mouseout', tip.hide);
+                    .on('mouseout', tip.hide)
+                    .on('mousedown', function(d, i) {
+                        filter('spotSelected', d, i);
+                    });
 
                 spotSquares
                     .transition()
@@ -183,7 +186,14 @@ var filter = function(action, value, index) {
     if (action == 'movieTableSelected') {
 
     };
-    if (action == 'spotmap') {};
+
+    if (action == 'spotSelected') {
+        //show modal for movie
+        console.log(value.movieid);
+        angular.element('#movieModal').scope().updateForMovieID(value.movieid)
+        $('#movieModal').modal('show');
+    };
+
     if (action == 'search') {};
 
 };
