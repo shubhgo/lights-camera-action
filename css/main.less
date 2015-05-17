@@ -1,6 +1,27 @@
 @lcaYellow: #FFCD00;
 @lcaBlack: #000000;
 @lcaWhite: #ffffff;
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+@import url(http://fonts.googleapis.com/css?family=Merriweather);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: Merriweather, serif;
+}
+
+a,
+div,
+p {
+    font-family: Lato, sans-serif;
+}
+
+html {
+    overflow-y: scroll;
+}
+
 .container-non-responsive {
     margin-left: auto;
     margin-right: auto;
@@ -11,10 +32,15 @@
     width: 900px;
 }
 
+div.lca-reduced-padding {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 .lca-spot-map {
-    height: 675px;
+    height: 590px;
     background: url('../images/sfmapDark.png');
-    background-size: 675px 675px;
+    background-size: 590px 590px;
     padding: 0px;
 }
 
@@ -28,22 +54,6 @@
     border-width: 1px;
     border-color: @lcaBlack;
     border-style: solid;
-}
-
-table {
-    height: 653px;
-}
-
-tbody {
-    overflow-y: scroll;
-    height: 630px;
-    width: 100%;
-    position: absolute;
-}
-
-.table > tbody > tr > td.lca-cell-chart {
-    padding: 0;
-    background-color: darken(#ffffff, 20%);
 }
 
 div.lca-cell-chart {
@@ -73,8 +83,17 @@ p.lca-cell-chart {
 }
 
 .lca-movie-table-outer {
-    height: 625px;
+    height: 590px;
     overflow: auto;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    // color: @lcaWhite;
+    background-color: lighten(@lcaBlack, 50%);
+    // height: 36px;
+    font-size: 20px;
+    // padding-left: 8px;
+    // padding-top: 2px;
 }
 
 .lca-movie-table {
@@ -97,6 +116,31 @@ p.lca-cell-chart {
     border-top: 38px solid rgba(0, 0, 0, 0.8);
     border-left: 15px solid transparent;
     float: left;
+}
+
+.lca-title {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    color: @lcaWhite;
+    background-color: lighten(@lcaBlack, 10%);
+    height: 36px;
+    font-size: 20px;
+    padding-left: 8px;
+    padding-top: 2px;
+}
+
+.lca-timeperiod {
+    margin-right: -10px;
+    margin-left: -10px;
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+.lca-col-timeperiod {
+    float: left;
+    width: 80.5px
 }
 
 svg {

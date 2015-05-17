@@ -32,59 +32,65 @@
 <body>
     <div class="container container-non-responsive">
         <div class="row">
+            <h1>Lights Camera Action</h1>
+        </div>
+        <div class="row">
             <!-- spot map -->
-            <div class="col-xs-9 lca-spot-map">
+            <div class="col-xs-8 lca-reduced-padding">
+                <div class="lca-title"><p>Movie Scenes</p></div>
+                <div class="lca-spot-map"></div>
             </div>
             <!-- movie table -->
-            <div class='col-xs-3 lca-movie-table-outer'>
-                <div class=" lca-movie-table">
+            <div class='col-xs-4 lca-reduced-padding'>
+                <div class="lca-title"><p>Movies</p></div>
+                <div class="lca-movie-table-outer">
+                    <div class="lca-movie-table"></div>
                 </div>
             </div>
         </div>
-        <div class="row lca-time-bar">
+        <br>
+        <div class="row">
+            <div class="col-sm-12 lca-reduced-padding"><div class="lca-title"><p>Select Time Period</p></div></div>
+        </div>
+        <div class="row lca-timeperiod">
             <!-- time period bar -->
-            <div class="col-xs-1">
-                <button type="button" class="btn btn-default">1900-09</button>
-            </div>
-            <div class="col-xs-1">
+            <div class="lca-col-timeperiod">
                 <button type="button" class="btn btn-default" onclick="filter('timerperiod',1910,0)">1910-19</button>
             </div>
-            <div class="col-xs-1">
+            <div class="lca-col-timeperiod">
                 <button type="button" class="btn btn-default" onclick="filter('timerperiod',1920,0)">1920-29</button>
             </div>
-            <div class="col-xs-1">
+            <div class="lca-col-timeperiod">
                 <button type="button" class="btn btn-default" onclick="filter('timerperiod',1930,0)">1930-39</button>
             </div>
-            <div class="col-xs-1">
+            <div class="lca-col-timeperiod">
                 <button type="button" class="btn btn-default" onclick="filter('timerperiod',1940,0)">1940-49</button>
             </div>
-            <div class="col-xs-1">
+            <div class="lca-col-timeperiod">
                 <button type="button" class="btn btn-default" onclick="filter('timerperiod',1950,0)">1950-59</button>
             </div>
-            <div class="col-xs-1">
+            <div class="lca-col-timeperiod">
                 <button type="button" class="btn btn-default" onclick="filter('timerperiod',1960,0)">1960-69</button>
             </div>
-            <div class="col-xs-1">
+            <div class="lca-col-timeperiod">
                 <button type="button" class="btn btn-default" onclick="filter('timerperiod',1970,0)">1970-79</button>
             </div>
-            <div class="col-xs-1">
+            <div class="lca-col-timeperiod">
                 <button type="button" class="btn btn-default" onclick="filter('timerperiod',1980,0)">1980-89</button>
             </div>
-            <div class="col-xs-1">
+            <div class="lca-col-timeperiod">
                 <button type="button" class="btn btn-default" onclick="filter('timerperiod',1990,0)">1990-99</button>
             </div>
-            <div class="col-xs-1">
+            <div class="lca-col-timeperiod">
                 <button type="button" class="btn btn-default" onclick="filter('timerperiod',2000,0)">2000-09</button>
             </div>
-            <div class="col-xs-1">
+            <div class="lca-col-timeperiod">
                 <button type="button" class="btn btn-default" onclick="filter('timerperiod',2010,0)">2010-15</button>
             </div>
         </div>
     </div>
     <script src="js/modules/movieTable.js"></script>
     <script src="js/modules/shotmap.js"></script>
-    
-
     <!-- Movie Detail Modal -->
     <div ng-controller="MovieModalCtrl as mmc" class="modal fade" id="movieModal" tabindex="-1" role="dialog" aria-labelledby="movieTitle" aria-hidden="true">
         <div class="modal-dialog">

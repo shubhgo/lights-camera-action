@@ -8,8 +8,8 @@ var sm = function() {
       bottom: 0,
       left: 0
     },
-    width = 675 - margin.left - margin.right,
-    height = 675 - margin.top - margin.bottom;
+    width = 590 - margin.left - margin.right,
+    height = 590 - margin.top - margin.bottom;
 
   var mapBounds = {
     top: 37.84,
