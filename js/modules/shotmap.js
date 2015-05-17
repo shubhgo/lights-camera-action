@@ -18,6 +18,8 @@ var sm = function() {
     left: -122.55
   };
 
+  var selectionHeight = 40;
+
   var x = d3.scale.linear()
     .range([0, width])
     .domain([mapBounds.left, mapBounds.right]);
@@ -41,9 +43,24 @@ var sm = function() {
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
+    .attr("class", "lca-spot-map-box")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   svg.call(tip);
+
+  d3.select(".lca-spot-map-box").append("rect")
+    .attr("class", "lca-filter")
+    .attr("x", 0)
+    .attr("y", height - selectionHeight)
+    .attr("width", width)
+    .attr("height", selectionHeight)
+
+  exports.filterText = d3.select(".lca-spot-map-box")
+    .append("text")
+    .attr("class", "lca-filter-text")
+    .attr("x", 10)
+    .attr("y", height - 14)
+    .text("Selection Text");
 
   exports.reloadMapWithTimePeriod = function(timePeriod) {
     var duration = 200;
@@ -97,15 +114,15 @@ var sm = function() {
     }, duration);
   };
 
-  exports.highlightSpotsForMovie = function(movieID) {
+  exports.highlightSpotsForMovie = function(movieTitle) {
 
-    if (movieID == null) {
+    if (movieTitle == null) {
       svg.selectAll(".lca-spot")
         .style('stroke', '#FFCD00');
     } else {
       svg.selectAll(".lca-spot")
         .style('stroke', function(data) {
-          if (movieID == data.movieid) {
+          if (movieTitle == data.title) {
             return '#FFCD00';
           } else {
             return '#646464';
@@ -140,18 +157,58 @@ var sm = function() {
   return exports;
 }();
 
+// time period
+var tp = function() {
+  var exports = {};
+
+  exports.selectTimePeriod = function(timePeriod) {
+    $('.lca-col-timeperiod').removeClass("lca-col-timeperiod-sel");
+    $('#div' + String(timePeriod)).addClass("lca-col-timeperiod-sel");
+  };
+
+  return exports;
+}(); 
+
+var currentFilter = {
+  'timeP': '1990',
+  'movie': 'title',
+  'spot': null
+};
 
 var filter = function(action, value, index) {
   if (action == 'timerperiod') {
+    var tprd = String(value);
+    currentFilter.timeP = tprd;
+    currentFilter.movie = null;
+    // currentFilter.spot = null;
+
+    var totp = tprd.substr(0, 3) + '9';
+    var filterText = 'Time Period: ' + tprd + ' to ' + totp;
+    sm.filterText.text(filterText);
+
     sm.reloadMapWithTimePeriod(value);
     mt.reloadMovieWithTimePeriod(value);
+
+    tp.selectTimePeriod(value);
   };
 
   if (action == 'movieTableHover') {
-    sm.highlightSpotsForMovie(value.movieid);
+    var tprd = currentFilter.timeP;
+    var totp = tprd.substr(0, 3) + '9';
+    currentFilter.movie = value.title;
+    var filterText = 'Time Period: ' + tprd + ' to ' + totp + ' Movie: ' + value.title;
+    sm.filterText.text(filterText);
+
+    sm.highlightSpotsForMovie(value.title);
   };
 
   if (action == 'movieTableHoverEnd') {
+    var tprd = currentFilter.timeP;
+    var totp = tprd.substr(0, 3) + '9';
+    currentFilter.movie = null;
+    var filterText = 'Time Period: ' + tprd + ' to ' + totp;
+    sm.filterText.text(filterText);
+
     sm.highlightSpotsForMovie(null);
   };
 
@@ -170,5 +227,4 @@ var filter = function(action, value, index) {
 };
 
 // load the map and the table
-filter('timerperiod','1990','');
-
+filter('timerperiod', '1990', '');
