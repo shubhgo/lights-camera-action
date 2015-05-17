@@ -27,12 +27,25 @@ var sm = function() {
 
     var color = d3.scale.category10();
 
+    var tip = d3.tip()
+        .attr('class', 'lca-spot-tip-tap')
+        .offset([19, 4])
+        .html(function(d) {
+            return "<div class='lca-spot-tip-head'></div> <div class='lca-spot-tip'><span>"
+            + d.title + 
+            "</span></div>";
+        })
+        .direction('e');
+
     var svg = d3.select(".lca-spot-map").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+    svg.call(tip);
+
+    // todo: change this loader
     d3.json("data/time_1990.json", function(error, data) {
         // console.log(data);
         svg.selectAll(".lca-spot")
@@ -95,7 +108,9 @@ var sm = function() {
                         // return y(d.Latitude); 
                     })
                     .attr('width', 10)
-                    .attr('height', 10);
+                    .attr('height', 10)
+                    .on('mouseover', tip.show)
+                    .on('mouseout', tip.hide);
 
                 spotSquares
                     .transition()
