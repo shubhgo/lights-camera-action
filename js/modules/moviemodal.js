@@ -12,6 +12,10 @@ app.controller('MovieModalCtrl', ['$scope', '$http',
           Title: 'Cound Not Find Movie'
         };
       } else {
+        $scope.movie = {
+          Title: 'Loading',
+          Poster: 'data/posters/' + movieid + '.jpg'
+        };
         var movieURL = 'http://www.omdbapi.com/?i=' + movieid + '&plot=full&r=json';
 
         $http.get(movieURL).
