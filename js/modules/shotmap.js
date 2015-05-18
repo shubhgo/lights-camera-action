@@ -35,6 +35,7 @@ var sm = function() {
   var opacity = d3.scale.linear()
     .domain([0, 10])
     .range([0.3, 1.0]);
+  exports.color = opacity;
 
   var tip = d3.tip()
     .attr('class', 'lca-spot-tip-tap')
@@ -56,23 +57,66 @@ var sm = function() {
 
   // Rating Legend
   // todo remove positioning hardcoding
-  // d3.select(".lca-spot-map-box").append("rect")
-  //   .attr("class", "lca-legend")
-  //   .attr("x", width - 100)
-  //   .attr("y", height - 160)
-  //   .attr("width", 100)
-  //   .attr("height", 120)
-  //   .style("fill", "red");
+  d3.select(".lca-spot-map-box").append("rect")
+    .attr("class", "lca-legend")
+    .attr("x", width - 110)
+    .attr("y", height - 150)
+    .attr("width", 110)
+    .attr("height", 110);
+  // .style("fill", "red");
 
-  // d3.select(".lca-spot-map-box").append("text")
-  //   .attr("class", "lca-legend-text")
-  //   .attr("x", width - 90)
-  //   .attr("y", height - 140)
-  //   .text("IMDB Rating");
+  d3.select(".lca-spot-map-box").append("text")
+    .attr("class", "lca-legend-textbox")
+    .attr("x", width - 100)
+    .attr("y", height - 130)
+    .text("IMDB Rating");
 
-  // d3.select(".lca-spot-map-box").append("rect")
-  //   .attr("class", "lca-legend-rect")
-  //   .attr()
+  d3.select(".lca-spot-map-box").append("rect")
+    .attr("class", "lca-legend-rect")
+    .attr("x", width - 100)
+    .attr("y", height - 115)
+    .attr("width", 10)
+    .attr("height", 10)
+    .style("fill", "#ffcd00")
+    .style("stroke", "#ffcd00");
+
+  d3.select(".lca-spot-map-box").append("rect")
+    .attr("class", "lca-legend-rect")
+    .attr("x", width - 100)
+    .attr("y", height - 90)
+    .attr("width", 10)
+    .attr("height", 10)
+    .style("fill", "#ffeea6")
+    .style("stroke", "#ffeea6")
+    .style("opacity", 0.55);
+
+  d3.select(".lca-spot-map-box").append("rect")
+    .attr("class", "lca-legend-rect")
+    .attr("x", width - 100)
+    .attr("y", height - 65)
+    .attr("width", 10)
+    .attr("height", 10)
+    .style("fill", "#ffffff")
+    .style("stroke", "#ffffff")
+    .style("opacity", 0.3);
+
+  d3.select(".lca-spot-map-box").append("text")
+    .attr("class", "lca-legend-text")
+    .attr("x", width - 80)
+    .attr("y", height - 105)
+    .text("10.0");
+
+  d3.select(".lca-spot-map-box").append("text")
+    .attr("class", "lca-legend-text")
+    .attr("x", width - 80)
+    .attr("y", height - 80)
+    .text("3.5");
+
+  d3.select(".lca-spot-map-box").append("text")
+    .attr("class", "lca-legend-text")
+    .attr("x", width - 80)
+    .attr("y", height - 55)
+    .text("Not Found");
 
   // Filter legend
   d3.select(".lca-spot-map-box").append("rect")
@@ -151,8 +195,8 @@ var sm = function() {
     if (movieTitle == null) {
       svg.selectAll(".lca-spot")
         .style('stroke', function(d, i) {
-            return color(d.rating);
-          });
+          return color(d.rating);
+        });
     } else {
       svg.selectAll(".lca-spot")
         .style('stroke', function(data) {
