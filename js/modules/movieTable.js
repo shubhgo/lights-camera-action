@@ -62,6 +62,12 @@ var mt = function() {
     setTimeout(function() {
       d3.json(timePeriodFile, function(error, data) {
 
+        // change table height lca-movie-table
+        var tableHeight = rowWidth * data.length + 20;
+        $( ".lca-movie-table" ).css( "height",tableHeight);
+
+
+
         y.range([0, rowWidth * data.length])
           .domain([0, data.length]);
 
