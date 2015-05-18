@@ -4,7 +4,7 @@ var mt = function() {
   var exports = {};
 
   var margin = {
-      top: 0,
+      top: 20,
       right: 0,
       bottom: 0,
       left: 0
@@ -19,11 +19,35 @@ var mt = function() {
 
   var y = d3.scale.linear();
 
+  // var xAxis = d3.
+  var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("top")
+    .ticks(3);
+
   var svg = d3.select(".lca-movie-table").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  var xAxisObject = svg.append("g")
+    .attr("class", "lca-x-axis")
+    .attr("transform", "translate(0, -1)")
+    .call(xAxis);
+
+  xAxisObject
+    .selectAll("text")
+    .attr("dx", "-.6em")
+    .attr("dy", ".40em");
+
+  xAxisObject
+    .append("text")
+    .attr("class", "label")
+    .attr("x", 3)
+    .attr("y", -5)
+    .style("text-anchor", "start")
+    .text("Number of Scenes");
 
   exports.reloadMovieWithTimePeriod = function(timePeriod) {
     var duration = 200;
@@ -134,7 +158,7 @@ var mt = function() {
       //     }
       //   });
 
-    };//end if
+    }; //end if
 
   };
   return exports;
