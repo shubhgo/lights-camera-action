@@ -28,15 +28,6 @@ var sm = function() {
     .range([height, 0])
     .domain([mapBounds.bottom, mapBounds.top]);
 
-  var color = d3.scale.linear()
-    .domain([0, 10])
-    .range(["white", "#FFCD00"]);
-
-  var opacity = d3.scale.linear()
-    .domain([0, 10])
-    .range([0.3, 1.0]);
-  exports.color = opacity;
-
   var tip = d3.tip()
     .attr('class', 'lca-spot-tip-tap')
     .offset([19, 4])
@@ -55,81 +46,13 @@ var sm = function() {
 
   svg.call(tip);
 
-  // Rating Legend
-  // todo remove positioning hardcoding
-  var addLegend = function() {
-    d3.select(".lca-spot-map-box").append("rect")
-      .attr("class", "lca-legend")
-      .attr("x", width - 110)
-      .attr("y", height - 150)
-      .attr("width", 110)
-      .attr("height", 110);
-    // .style("fill", "red");
-
-    d3.select(".lca-spot-map-box").append("text")
-      .attr("class", "lca-legend-textbox")
-      .attr("x", width - 100)
-      .attr("y", height - 130)
-      .text("IMDB Rating");
-
-    d3.select(".lca-spot-map-box").append("rect")
-      .attr("class", "lca-legend-rect")
-      .attr("x", width - 100)
-      .attr("y", height - 115)
-      .attr("width", 10)
-      .attr("height", 10)
-      .style("fill", "#ffcd00")
-      .style("stroke", "#ffcd00");
-
-    d3.select(".lca-spot-map-box").append("rect")
-      .attr("class", "lca-legend-rect")
-      .attr("x", width - 100)
-      .attr("y", height - 90)
-      .attr("width", 10)
-      .attr("height", 10)
-      .style("fill", "#ffeea6")
-      .style("stroke", "#ffeea6")
-      .style("opacity", 0.55);
-
-    d3.select(".lca-spot-map-box").append("rect")
-      .attr("class", "lca-legend-rect")
-      .attr("x", width - 100)
-      .attr("y", height - 65)
-      .attr("width", 10)
-      .attr("height", 10)
-      .style("fill", "#ffffff")
-      .style("stroke", "#ffffff")
-      .style("opacity", 0.3);
-
-    d3.select(".lca-spot-map-box").append("text")
-      .attr("class", "lca-legend-text")
-      .attr("x", width - 80)
-      .attr("y", height - 105)
-      .text("10.0");
-
-    d3.select(".lca-spot-map-box").append("text")
-      .attr("class", "lca-legend-text")
-      .attr("x", width - 80)
-      .attr("y", height - 80)
-      .text("3.5");
-
-    d3.select(".lca-spot-map-box").append("text")
-      .attr("class", "lca-legend-text")
-      .attr("x", width - 80)
-      .attr("y", height - 55)
-      .text("Not Found");
-
-    // Filter legend
-    d3.select(".lca-spot-map-box").append("rect")
-      .attr("class", "lca-filter")
-      .attr("x", 0)
-      .attr("y", height - selectionHeight)
-      .attr("width", width)
-      .attr("height", selectionHeight)
-
-  };
-
-  addLegend();
+  // Filter legend
+  d3.select(".lca-spot-map-box").append("rect")
+    .attr("class", "lca-filter")
+    .attr("x", 0)
+    .attr("y", height - selectionHeight)
+    .attr("width", width)
+    .attr("height", selectionHeight)
 
   exports.filterText = d3.select(".lca-spot-map-box")
     .append("text")
@@ -173,9 +96,7 @@ var sm = function() {
           })
           .attr('width', 10)
           .attr('height', 10)
-          .style('stroke', function(d, i) {
-            return color(d.rating);
-          })
+          .style('stroke', '#FFCD00')
           .on('mouseover', tip.show)
           .on('mouseout', tip.hide)
           .on('mousedown', function(d, i) {
@@ -186,9 +107,7 @@ var sm = function() {
           .transition()
           .duration(duration)
           .ease("quad")
-          .style('opacity', function(d) {
-            return opacity(d.rating);
-          });
+          .style('opacity', 0.6);
 
         spotSquares.exit().remove();
       });
@@ -199,9 +118,8 @@ var sm = function() {
 
     if (movieTitle == null) {
       svg.selectAll(".lca-spot")
-        .style('stroke', function(d, i) {
-          return color(d.rating);
-        });
+        .style('stroke', '#FFCD00')
+        .style('opacity', 0.6);
     } else {
       svg.selectAll(".lca-spot")
         .style('stroke', function(data) {
@@ -209,6 +127,13 @@ var sm = function() {
             return '#FFCD00';
           } else {
             return '#646464';
+          }
+        })
+        .style('opacity', function(data) {
+          if (movieTitle == data.title) {
+            return 1.0;
+          } else {
+            return 0.6;
           }
         });
     };
