@@ -64,7 +64,7 @@ var mt = function() {
 
         // change table height lca-movie-table
         var tableHeight = rowWidth * data.length + 20;
-        $( ".lca-movie-table" ).css( "height",tableHeight);
+        $(".lca-movie-table").css("height", tableHeight);
 
 
 

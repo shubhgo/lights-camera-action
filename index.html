@@ -7,144 +7,146 @@
 <!--<![endif]-->
 
 <head>
-    <!-- <link rel="icon" 
+  <!-- <link rel="icon" 
       type="image/ico" 
       href="assets/images/pollster.ico">
  -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Lights Camera Action</title>
-    <meta name="description" content="">
-    <!-- Bootstrap imports -->
-    <script src="js/lib/jquery.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    <script src="js/lib/bootstrap.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <script src="js/lib/d3.js"></script>
-    <script src="js/lib/d3.tip.js"></script>
-    <script src="js/lib/react.js"></script>
-    <script src="js/lib/angular.js"></script>
-    <!-- // <script src="js/lib/spin.min.js"</script> -->
-    <script type="text/javascript" src="http://fgnass.github.io/spin.js/spin.min.js"></script>
-    <script src="js/lib/angular-spinner.min.js"></script>
-    <script src="js/lib/angular-loading-spinner.js"></script>
-    <script src="js/modules/moviemodal.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Lights Camera Action</title>
+  <meta name="description" content="">
+  <!-- Bootstrap imports -->
+  <script src="js/lib/jquery.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <script src="js/lib/bootstrap.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/lib/d3.js"></script>
+  <script src="js/lib/d3.tip.js"></script>
+  <script src="js/lib/react.js"></script>
+  <script src="js/lib/angular.js"></script>
+  <!-- // <script src="js/lib/spin.min.js"</script> -->
+  <script type="text/javascript" src="http://fgnass.github.io/spin.js/spin.min.js"></script>
+  <script src="js/lib/angular-spinner.min.js"></script>
+  <script src="js/lib/angular-loading-spinner.js"></script>
+  <script src="js/modules/moviemodal.js"></script>
 </head>
 
 <body>
-    <div class="container container-non-responsive">
-        <div class="row">
-            <h1 class="lca-page-title">Lights Camera Action</h1>
-            <p class="lca-page-subtitle">If you love movies, and you love San Francisco, you're bound to love this. A visualization of filming locations of movies shot in San Francisco from 1915 - 2010.
-            </p>
-            <p class="lca-page-subtitle">214 Movies shot at 1098 Locations, over the last century in San Francisco</p>
-        </div>
-        <div class="row">
-            <!-- spot map -->
-            <div class="col-xs-8 lca-reduced-padding">
-                <div class="lca-title">
-                    <p>Movie Scenes</p>
-                </div>
-                <div class="lca-spot-map"></div>
-            </div>
-            <!-- movie table -->
-            <div class='col-xs-4 lca-reduced-padding'>
-                <div class="lca-title">
-                    <p>Movies</p>
-                </div>
-                <div class="lca-movie-table-outer">
-                    <div class="lca-movie-table"></div>
-                </div>
-            </div>
-        </div>
-        <div class="row lca-timeperiod-header">
-            <div class="col-sm-12 lca-reduced-padding">
-                <div class="lca-title">
-                    <p>Select Time Period</p>
-                </div>
-            </div>
-        </div>
-        <div class="row lca-timeperiod">
-            <!-- time period bar -->
-            <div id='div1910' class="lca-col-timeperiod" onclick="filter('timerperiod',1910,0)">
-                <img id='img1910' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
-                <p class="lca-timeperiod-p">1910-19</p>
-            </div>
-            <div id='div1920' class="lca-col-timeperiod" onclick="filter('timerperiod',1920,0)">
-                <img id='img1920' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
-                <p class="lca-timeperiod-p">1920-29</p>
-            </div>
-            <div id='div1930' class="lca-col-timeperiod" onclick="filter('timerperiod',1930,0)">
-                <img id='img1930' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
-                <p class="lca-timeperiod-p">1930-39</p>
-            </div>
-            <div id='div1940' class="lca-col-timeperiod" onclick="filter('timerperiod',1940,0)">
-                <img id='img1940' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
-                <p class="lca-timeperiod-p">1940-49</p>
-            </div>
-            <div id='div1950' class="lca-col-timeperiod" onclick="filter('timerperiod',1950,0)">
-                <img id='img1950' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
-                <p class="lca-timeperiod-p">1950-59</p>
-            </div>
-            <div id='div1960' class="lca-col-timeperiod" onclick="filter('timerperiod',1960,0)">
-                <img id='img1960' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
-                <p class="lca-timeperiod-p">1960-69</p>
-            </div>
-            <div id='div1970' class="lca-col-timeperiod" onclick="filter('timerperiod',1970,0)">
-                <img id='img1970' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
-                <p class="lca-timeperiod-p">1970-79</p>
-            </div>
-            <div id='div1980' class="lca-col-timeperiod" onclick="filter('timerperiod',1980,0)">
-                <img id='img1980' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
-                <p class="lca-timeperiod-p">1980-89</p>
-            </div>
-            <div id='div1990' class="lca-col-timeperiod" onclick="filter('timerperiod',1990,0)">
-                <img id='img1990' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
-                <p class="lca-timeperiod-p">1990-99</p>
-            </div>
-            <div id='div2000' class="lca-col-timeperiod" onclick="filter('timerperiod',2000,0)">
-                <img id='img2000' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
-                <p class="lca-timeperiod-p">2000-09</p>
-            </div>
-            <div id='div2010' class="lca-col-timeperiod" onclick="filter('timerperiod',2010,0)">
-                <img id='img2010' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
-                <p class="lca-timeperiod-p">2010-15</p>
-            </div>
-        </div>
-        <br>
-        <div class='row lca-footer'>
-            <div class='col-sm-12'>
-                <p> 2015 © <a class='sg-footer-a' href='http://shubhamgoel.me'>Shubham Goel</a></p>
-            </div>
-        </div>
+  <div class="container container-non-responsive">
+    <div class="row">
+      <h1 class="lca-page-title">Lights Camera Action</h1>
+      <p class="lca-page-subtitle">If you love movies, and you love San Francisco, you're bound to love this. A visualization of filming locations of movies shot in San Francisco from 1915 - 2010.
+      </p>
+      <p class="lca-page-subtitle">214 Movies shot at 1098 Locations, over the last century in San Francisco</p>
     </div>
-    <script src="js/modules/movieTable.js"></script>
-    <script src="js/modules/shotmap.js"></script>
-    <!-- Movie Detail Modal -->
-    <div ng-controller="MovieModalCtrl as mmc" class="modal fade" id="movieModal" tabindex="-1" role="dialog" aria-labelledby="movieTitle" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="movieTitle">{{movie.Title}}</h4>
-                </div>
-                <div class="modal-body">
-                    <span us-spinner="{radius:30, width:8, length: 16}"></span>
-                    <div class='row'>
-                        <div class='col-xs-6'><img class='lca-poster-img' src="{{movie.Poster}}"></div>
-                        <div class='col-xs-6'>
-                            <p>Year: {{movie.Year}}</p>
-                            <p>Rating: {{movie.imdbRating}} / 10.0</p>
-                            <p>Release: {{movie.Released}}</p>
-                            <p>Polot: {{movie.Plot}}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="row">
+      <!-- spot map -->
+      <div class="col-xs-8 lca-reduced-padding">
+        <div class="lca-title">
+          <p>Movie Scenes</p>
         </div>
+        <div class="lca-spot-map"></div>
+      </div>
+      <!-- movie table -->
+      <div class='col-xs-4 lca-reduced-padding'>
+        <div class="lca-title">
+          <p>Movies</p>
+        </div>
+        <div class="lca-movie-table-outer">
+          <div class="lca-movie-table"></div>
+        </div>
+      </div>
     </div>
+    <div class="row lca-timeperiod-header">
+      <div class="col-sm-12 lca-reduced-padding">
+        <div class="lca-title">
+          <p>Select Time Period</p>
+        </div>
+      </div>
+    </div>
+    <div class="row lca-timeperiod">
+      <!-- time period bar -->
+      <div id='div1910' class="lca-col-timeperiod" onclick="filter('timerperiod',1910,0)">
+        <img id='img1910' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
+        <p class="lca-timeperiod-p">1910-19</p>
+      </div>
+      <div id='div1920' class="lca-col-timeperiod" onclick="filter('timerperiod',1920,0)">
+        <img id='img1920' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
+        <p class="lca-timeperiod-p">1920-29</p>
+      </div>
+      <div id='div1930' class="lca-col-timeperiod" onclick="filter('timerperiod',1930,0)">
+        <img id='img1930' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
+        <p class="lca-timeperiod-p">1930-39</p>
+      </div>
+      <div id='div1940' class="lca-col-timeperiod" onclick="filter('timerperiod',1940,0)">
+        <img id='img1940' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
+        <p class="lca-timeperiod-p">1940-49</p>
+      </div>
+      <div id='div1950' class="lca-col-timeperiod" onclick="filter('timerperiod',1950,0)">
+        <img id='img1950' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
+        <p class="lca-timeperiod-p">1950-59</p>
+      </div>
+      <div id='div1960' class="lca-col-timeperiod" onclick="filter('timerperiod',1960,0)">
+        <img id='img1960' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
+        <p class="lca-timeperiod-p">1960-69</p>
+      </div>
+      <div id='div1970' class="lca-col-timeperiod" onclick="filter('timerperiod',1970,0)">
+        <img id='img1970' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
+        <p class="lca-timeperiod-p">1970-79</p>
+      </div>
+      <div id='div1980' class="lca-col-timeperiod" onclick="filter('timerperiod',1980,0)">
+        <img id='img1980' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
+        <p class="lca-timeperiod-p">1980-89</p>
+      </div>
+      <div id='div1990' class="lca-col-timeperiod" onclick="filter('timerperiod',1990,0)">
+        <img id='img1990' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
+        <p class="lca-timeperiod-p">1990-99</p>
+      </div>
+      <div id='div2000' class="lca-col-timeperiod" onclick="filter('timerperiod',2000,0)">
+        <img id='img2000' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
+        <p class="lca-timeperiod-p">2000-09</p>
+      </div>
+      <div id='div2010' class="lca-col-timeperiod" onclick="filter('timerperiod',2010,0)">
+        <img id='img2010' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
+        <p class="lca-timeperiod-p">2010-15</p>
+      </div>
+    </div>
+    <br>
+    <div class='row lca-footer'>
+      <div class='col-sm-12'>
+        <p> 2015 © <a class='sg-footer-a' href='http://shubhamgoel.me'>Shubham Goel</a></p>
+      </div>
+    </div>
+  </div>
+  <script src="js/modules/movieTable.js"></script>
+  <script src="js/modules/shotmap.js"></script>
+  <!-- Movie Detail Modal -->
+  <div ng-controller="MovieModalCtrl as mmc" class="modal fade" id="movieModal" tabindex="-1" role="dialog" aria-labelledby="movieTitle" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="movieTitle">{{movie.Title}}</h4>
+        </div>
+        <div class="modal-body">
+          <span us-spinner="{radius:30, width:8, length: 16}"></span>
+          <div class='row'>
+            <div class='col-xs-6'><img class='lca-poster-img' src="{{movie.Poster}}"></div>
+            <div class='col-xs-6'>
+              <p>Year: {{movie.Year}}</p>
+              <p>Rating: {{movie.imdbRating}} / 10.0</p>
+              <p>Released: {{movie.Released}}</p>
+              <p>Genre: {{movie.Genre}}</p>
+              <p><a ng-href="http://www.imdb.com/title/{{movie.imdbID}}"> IMDB Link</a></p>
+              <p>Plot: {{movie.Plot}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
