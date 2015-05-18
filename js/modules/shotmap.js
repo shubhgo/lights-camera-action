@@ -57,74 +57,79 @@ var sm = function() {
 
   // Rating Legend
   // todo remove positioning hardcoding
-  d3.select(".lca-spot-map-box").append("rect")
-    .attr("class", "lca-legend")
-    .attr("x", width - 110)
-    .attr("y", height - 150)
-    .attr("width", 110)
-    .attr("height", 110);
-  // .style("fill", "red");
+  var addLegend = function() {
+    d3.select(".lca-spot-map-box").append("rect")
+      .attr("class", "lca-legend")
+      .attr("x", width - 110)
+      .attr("y", height - 150)
+      .attr("width", 110)
+      .attr("height", 110);
+    // .style("fill", "red");
 
-  d3.select(".lca-spot-map-box").append("text")
-    .attr("class", "lca-legend-textbox")
-    .attr("x", width - 100)
-    .attr("y", height - 130)
-    .text("IMDB Rating");
+    d3.select(".lca-spot-map-box").append("text")
+      .attr("class", "lca-legend-textbox")
+      .attr("x", width - 100)
+      .attr("y", height - 130)
+      .text("IMDB Rating");
 
-  d3.select(".lca-spot-map-box").append("rect")
-    .attr("class", "lca-legend-rect")
-    .attr("x", width - 100)
-    .attr("y", height - 115)
-    .attr("width", 10)
-    .attr("height", 10)
-    .style("fill", "#ffcd00")
-    .style("stroke", "#ffcd00");
+    d3.select(".lca-spot-map-box").append("rect")
+      .attr("class", "lca-legend-rect")
+      .attr("x", width - 100)
+      .attr("y", height - 115)
+      .attr("width", 10)
+      .attr("height", 10)
+      .style("fill", "#ffcd00")
+      .style("stroke", "#ffcd00");
 
-  d3.select(".lca-spot-map-box").append("rect")
-    .attr("class", "lca-legend-rect")
-    .attr("x", width - 100)
-    .attr("y", height - 90)
-    .attr("width", 10)
-    .attr("height", 10)
-    .style("fill", "#ffeea6")
-    .style("stroke", "#ffeea6")
-    .style("opacity", 0.55);
+    d3.select(".lca-spot-map-box").append("rect")
+      .attr("class", "lca-legend-rect")
+      .attr("x", width - 100)
+      .attr("y", height - 90)
+      .attr("width", 10)
+      .attr("height", 10)
+      .style("fill", "#ffeea6")
+      .style("stroke", "#ffeea6")
+      .style("opacity", 0.55);
 
-  d3.select(".lca-spot-map-box").append("rect")
-    .attr("class", "lca-legend-rect")
-    .attr("x", width - 100)
-    .attr("y", height - 65)
-    .attr("width", 10)
-    .attr("height", 10)
-    .style("fill", "#ffffff")
-    .style("stroke", "#ffffff")
-    .style("opacity", 0.3);
+    d3.select(".lca-spot-map-box").append("rect")
+      .attr("class", "lca-legend-rect")
+      .attr("x", width - 100)
+      .attr("y", height - 65)
+      .attr("width", 10)
+      .attr("height", 10)
+      .style("fill", "#ffffff")
+      .style("stroke", "#ffffff")
+      .style("opacity", 0.3);
 
-  d3.select(".lca-spot-map-box").append("text")
-    .attr("class", "lca-legend-text")
-    .attr("x", width - 80)
-    .attr("y", height - 105)
-    .text("10.0");
+    d3.select(".lca-spot-map-box").append("text")
+      .attr("class", "lca-legend-text")
+      .attr("x", width - 80)
+      .attr("y", height - 105)
+      .text("10.0");
 
-  d3.select(".lca-spot-map-box").append("text")
-    .attr("class", "lca-legend-text")
-    .attr("x", width - 80)
-    .attr("y", height - 80)
-    .text("3.5");
+    d3.select(".lca-spot-map-box").append("text")
+      .attr("class", "lca-legend-text")
+      .attr("x", width - 80)
+      .attr("y", height - 80)
+      .text("3.5");
 
-  d3.select(".lca-spot-map-box").append("text")
-    .attr("class", "lca-legend-text")
-    .attr("x", width - 80)
-    .attr("y", height - 55)
-    .text("Not Found");
+    d3.select(".lca-spot-map-box").append("text")
+      .attr("class", "lca-legend-text")
+      .attr("x", width - 80)
+      .attr("y", height - 55)
+      .text("Not Found");
 
-  // Filter legend
-  d3.select(".lca-spot-map-box").append("rect")
-    .attr("class", "lca-filter")
-    .attr("x", 0)
-    .attr("y", height - selectionHeight)
-    .attr("width", width)
-    .attr("height", selectionHeight)
+    // Filter legend
+    d3.select(".lca-spot-map-box").append("rect")
+      .attr("class", "lca-filter")
+      .attr("x", 0)
+      .attr("y", height - selectionHeight)
+      .attr("width", width)
+      .attr("height", selectionHeight)
+
+  };
+
+  addLegend();
 
   exports.filterText = d3.select(".lca-spot-map-box")
     .append("text")
@@ -249,7 +254,8 @@ var tp = function() {
 
 var currentFilter = {
   'timeP': '1990',
-  'movie': 'title',
+  'movieHover': '',
+  'movieSelected': null,
   'spot': null
 };
 
@@ -257,7 +263,8 @@ var filter = function(action, value, index) {
   if (action == 'timerperiod') {
     var tprd = String(value);
     currentFilter.timeP = tprd;
-    currentFilter.movie = null;
+    currentFilter.movieHover = null;
+    currentFilter.movieSelected = null;
     // currentFilter.spot = null;
 
     var totp = tprd.substr(0, 3) + '9';
@@ -273,7 +280,8 @@ var filter = function(action, value, index) {
   if (action == 'movieTableHover') {
     var tprd = currentFilter.timeP;
     var totp = tprd.substr(0, 3) + '9';
-    currentFilter.movie = value.title;
+    currentFilter.movieHover = value.title;
+    currentFilter.movieSelected = null;
     var filterText = 'Time Period: ' + tprd + ' to ' + totp + ' Movie: ' + value.title;
     sm.filterText.text(filterText);
 
@@ -284,16 +292,27 @@ var filter = function(action, value, index) {
   if (action == 'movieTableHoverEnd') {
     var tprd = currentFilter.timeP;
     var totp = tprd.substr(0, 3) + '9';
-    currentFilter.movie = null;
+    currentFilter.movieHover = null;
+
     var filterText = 'Time Period: ' + tprd + ' to ' + totp;
+    if (currentFilter.movieSelected) {
+      filterText = filterText + ' Movie: ' + currentFilter.movieSelected;
+    };
     sm.filterText.text(filterText);
 
-    sm.highlightSpotsForMovie(null);
-    mt.highlightMovie(null);
+    sm.highlightSpotsForMovie(currentFilter.movieSelected);
+    mt.highlightMovie(currentFilter.movieSelected);
   };
 
   if (action == 'movieTableSelected') {
+    var tprd = currentFilter.timeP;
+    var totp = tprd.substr(0, 3) + '9';
+    currentFilter.movieSelected = value.title;
+    var filterText = 'Time Period: ' + tprd + ' to ' + totp + ' Movie: ' + value.title;
+    sm.filterText.text(filterText);
 
+    sm.highlightSpotsForMovie(value.title);
+    mt.highlightMovie(value.title);
   };
 
   if (action == 'spotSelected') {

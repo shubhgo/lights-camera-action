@@ -90,7 +90,10 @@ var mt = function() {
           })
           .on('mouseout.showallspots', function(d, i) {
             filter('movieTableHoverEnd', '', '');
-          });;
+          })
+          .on('click', function(d, i) {
+            filter('movieTableSelected', d, i);
+          });
 
         var movieLabel = svg.selectAll('.lca-movie-label')
           .data(data);
@@ -112,7 +115,10 @@ var mt = function() {
           })
           .on('mouseout.showallspots', function(d, i) {
             filter('movieTableHoverEnd', '', '');
-          });;
+          })
+          .on('click', function(d, i) {
+            filter('movieTableSelected', d, i);
+          });
 
 
         svg.selectAll(".lca-movie, .lca-movie-label")
