@@ -136,6 +136,7 @@ var mt = function() {
 
         movieLabel.exit().remove();
         movieRow.exit().remove();
+        movieRowBackground.exit().remove();
       });
     }, duration);
   };

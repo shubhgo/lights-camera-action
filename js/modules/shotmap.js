@@ -252,4 +252,4 @@ var filter = function(action, value, index) {
 };
 
 // load the map and the table
-filter('timerperiod', '1990', '');
+filter('timerperiod', '2010', '');
