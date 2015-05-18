@@ -28,7 +28,13 @@ var sm = function() {
     .range([height, 0])
     .domain([mapBounds.bottom, mapBounds.top]);
 
-  var color = d3.scale.category10();
+  var color = d3.scale.linear()
+    .domain([0, 10])
+    .range(["white", "#FFCD00"]);
+
+  var opacity = d3.scale.linear()
+    .domain([0, 10])
+    .range([0.3, 1.0]);
 
   var tip = d3.tip()
     .attr('class', 'lca-spot-tip-tap')
@@ -48,6 +54,27 @@ var sm = function() {
 
   svg.call(tip);
 
+  // Rating Legend
+  // todo remove positioning hardcoding
+  // d3.select(".lca-spot-map-box").append("rect")
+  //   .attr("class", "lca-legend")
+  //   .attr("x", width - 100)
+  //   .attr("y", height - 160)
+  //   .attr("width", 100)
+  //   .attr("height", 120)
+  //   .style("fill", "red");
+
+  // d3.select(".lca-spot-map-box").append("text")
+  //   .attr("class", "lca-legend-text")
+  //   .attr("x", width - 90)
+  //   .attr("y", height - 140)
+  //   .text("IMDB Rating");
+
+  // d3.select(".lca-spot-map-box").append("rect")
+  //   .attr("class", "lca-legend-rect")
+  //   .attr()
+
+  // Filter legend
   d3.select(".lca-spot-map-box").append("rect")
     .attr("class", "lca-filter")
     .attr("x", 0)
@@ -97,6 +124,9 @@ var sm = function() {
           })
           .attr('width', 10)
           .attr('height', 10)
+          .style('stroke', function(d, i) {
+            return color(d.rating);
+          })
           .on('mouseover', tip.show)
           .on('mouseout', tip.hide)
           .on('mousedown', function(d, i) {
@@ -107,7 +137,9 @@ var sm = function() {
           .transition()
           .duration(duration)
           .ease("quad")
-          .style('opacity', 1);
+          .style('opacity', function(d) {
+            return opacity(d.rating);
+          });
 
         spotSquares.exit().remove();
       });
@@ -118,7 +150,9 @@ var sm = function() {
 
     if (movieTitle == null) {
       svg.selectAll(".lca-spot")
-        .style('stroke', '#FFCD00');
+        .style('stroke', function(d, i) {
+            return color(d.rating);
+          });
     } else {
       svg.selectAll(".lca-spot")
         .style('stroke', function(data) {
@@ -167,7 +201,7 @@ var tp = function() {
   };
 
   return exports;
-}(); 
+}();
 
 var currentFilter = {
   'timeP': '1990',
