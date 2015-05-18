@@ -81,9 +81,9 @@ p.lca-cell-chart {
     width: 190px;
 }
 
-.lca-movie {
-    fill: @lcaYellow;
-}
+// .lca-movie {
+//     fill: @lcaYellow;
+// }
 
 .lca-movie-table-outer {
     height: 590px;
@@ -179,12 +179,13 @@ p.lca-cell-chart {
 }
 
 .lca-col-timeperiod:hover, .lca-col-timeperiod:focus, .lca-col-timeperiod:active {
-    background-color: darken(@lcaWhite, 30%);
+    background-color: lighten(@lcaYellow, 25%);
 
 }
 
 .lca-col-timeperiod-sel {
-    background-color: darken(@lcaWhite, 30%);
+    background-color: lighten(@lcaYellow, 10%);
+    border: 1px solid @lcaYellow;
 }
 
 .lca-timeperiod-btn {

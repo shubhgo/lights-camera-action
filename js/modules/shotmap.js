@@ -200,6 +200,7 @@ var filter = function(action, value, index) {
     sm.filterText.text(filterText);
 
     sm.highlightSpotsForMovie(value.title);
+    mt.highlightMovie(value.title);
   };
 
   if (action == 'movieTableHoverEnd') {
@@ -210,6 +211,7 @@ var filter = function(action, value, index) {
     sm.filterText.text(filterText);
 
     sm.highlightSpotsForMovie(null);
+    mt.highlightMovie(null);
   };
 
   if (action == 'movieTableSelected') {

@@ -60,6 +60,7 @@ var mt = function() {
             }
           })
           .attr('height', rowWidth - 1)
+          .style('fill', '#FFCD00')
           .on('mouseover.hideotherspots', function(d, i) {
             filter('movieTableHover', d, i);
           })
@@ -100,6 +101,41 @@ var mt = function() {
         movieRow.exit().remove();
       });
     }, duration);
+  };
+
+  exports.highlightMovie = function(movieTitle) {
+
+    if (movieTitle == null) {
+      svg.selectAll(".lca-movie")
+        .style('stroke', null)
+        .style('fill', '#FFCD00');
+    } else {
+      svg.selectAll(".lca-movie")
+        .style('stroke', function(data) {
+          if (movieTitle == data.title) {
+            return '#ffffff';
+          } else {
+            return null;
+          }
+        })
+        .style('fill', function(data) {
+          if (movieTitle == data.title) {
+            return '#FFCD00';
+          } else {
+            return '#6d6d6d';
+          };
+        });
+      // svg.selectAll(".lca-movie")
+      //   .style('stroke', function(data) {
+      //     if (movieTitle == data.title) {
+      //       return '#FFCD00';
+      //     } else {
+      //       return '#6D6D6D';
+      //     }
+      //   });
+
+    };//end if
+
   };
   return exports;
 }();
