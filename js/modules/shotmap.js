@@ -1,5 +1,5 @@
 // spot map
-var sm = function() {
+var sm = function () {
   var exports = {};
 
   var margin = {
@@ -31,7 +31,7 @@ var sm = function() {
   var tip = d3.tip()
     .attr('class', 'lca-spot-tip-tap')
     .offset([19, 4])
-    .html(function(d) {
+    .html(function (d) {
       return "<div class='lca-spot-tip-head'></div> <div class='lca-spot-tip'><span>" + d.title +
         "</span></div>";
     })
@@ -52,7 +52,7 @@ var sm = function() {
     .attr("x", 0)
     .attr("y", height - selectionHeight)
     .attr("width", width)
-    .attr("height", selectionHeight)
+    .attr("height", selectionHeight);
 
   exports.filterText = d3.select(".lca-spot-map-box")
     .append("text")
@@ -61,7 +61,7 @@ var sm = function() {
     .attr("y", height - 14)
     .text("Selection Text");
 
-  exports.reloadMapWithTimePeriod = function(timePeriod) {
+  exports.reloadMapWithTimePeriod = function (timePeriod) {
     var duration = 200;
     var timePeriodFile = 'data/map/map_' + timePeriod + '.json';
     svg.selectAll(".lca-spot")
@@ -70,8 +70,8 @@ var sm = function() {
       .ease("quad")
       .style('opacity', 0);
 
-    setTimeout(function() {
-      d3.json(timePeriodFile, function(error, data) {
+    setTimeout(function () {
+      d3.json(timePeriodFile, function (error, data) {
         var spotSquares = svg.selectAll(".lca-spot")
           .data(data);
 
@@ -79,18 +79,18 @@ var sm = function() {
           .attr("class", "lca-spot");
 
         spotSquares
-          .attr("x", function(d) {
+          .attr("x", function (d) {
             if (d.long) {
               return x(d.long);
             } else {
-              return 0
+              return 0;
             }
           })
-          .attr("y", function(d) {
+          .attr("y", function (d) {
             if (d.lat) {
               return y(d.lat);
             } else {
-              return 0
+              return 0;
             }
             // return y(d.Latitude); 
           })
@@ -99,7 +99,7 @@ var sm = function() {
           .style('stroke', '#FFCD00')
           .on('mouseover', tip.show)
           .on('mouseout', tip.hide)
-          .on('mousedown', function(d, i) {
+          .on('mousedown', function (d, i) {
             filter('spotSelected', d, i);
           });
 
@@ -114,29 +114,29 @@ var sm = function() {
     }, duration);
   };
 
-  exports.highlightSpotsForMovie = function(movieTitle) {
+  exports.highlightSpotsForMovie = function (movieTitle) {
 
-    if (movieTitle == null) {
+    if (!movieTitle) {
       svg.selectAll(".lca-spot")
         .style('stroke', '#FFCD00')
         .style('opacity', 0.6);
     } else {
       svg.selectAll(".lca-spot")
-        .style('stroke', function(data) {
+        .style('stroke', function (data) {
           if (movieTitle == data.title) {
             return '#FFCD00';
           } else {
             return '#646464';
           }
         })
-        .style('opacity', function(data) {
+        .style('opacity', function (data) {
           if (movieTitle == data.title) {
             return 1.0;
           } else {
             return 0.6;
           }
         });
-    };
+    }
 
     // .style("stroke", function(data) {
     //     if (data.destination == dest) {
@@ -166,10 +166,10 @@ var sm = function() {
 }();
 
 // time period
-var tp = function() {
+var tp = function () {
   var exports = {};
 
-  exports.selectTimePeriod = function(timePeriod) {
+  exports.selectTimePeriod = function (timePeriod) {
     $('.lca-col-timeperiod').removeClass("lca-col-timeperiod-sel");
     $('#div' + String(timePeriod)).addClass("lca-col-timeperiod-sel");
   };
@@ -184,70 +184,71 @@ var currentFilter = {
   'spot': null
 };
 
-var filter = function(action, value, index) {
+var filter = function (action, value, index) {
+  var tprd, totp, filterText;
   if (action == 'timerperiod') {
-    var tprd = String(value);
+    tprd = String(value);
     currentFilter.timeP = tprd;
     currentFilter.movieHover = null;
     currentFilter.movieSelected = null;
     // currentFilter.spot = null;
 
-    var totp = tprd.substr(0, 3) + '9';
-    var filterText = 'Time Period: ' + tprd + ' to ' + totp;
+    totp = tprd.substr(0, 3) + '9';
+    filterText = 'Time Period: ' + tprd + ' to ' + totp;
     sm.filterText.text(filterText);
 
     sm.reloadMapWithTimePeriod(value);
     mt.reloadMovieWithTimePeriod(value);
 
     tp.selectTimePeriod(value);
-  };
+  }
 
   if (action == 'movieTableHover') {
-    var tprd = currentFilter.timeP;
-    var totp = tprd.substr(0, 3) + '9';
+    tprd = currentFilter.timeP;
+    totp = tprd.substr(0, 3) + '9';
     currentFilter.movieHover = value.title;
     currentFilter.movieSelected = null;
-    var filterText = 'Time Period: ' + tprd + ' to ' + totp + ' Movie: ' + value.title;
+    filterText = 'Time Period: ' + tprd + ' to ' + totp + ' Movie: ' + value.title;
     sm.filterText.text(filterText);
 
     sm.highlightSpotsForMovie(value.title);
     mt.highlightMovie(value.title);
-  };
+  }
 
   if (action == 'movieTableHoverEnd') {
-    var tprd = currentFilter.timeP;
-    var totp = tprd.substr(0, 3) + '9';
+    tprd = currentFilter.timeP;
+    totp = tprd.substr(0, 3) + '9';
     currentFilter.movieHover = null;
 
-    var filterText = 'Time Period: ' + tprd + ' to ' + totp;
+    filterText = 'Time Period: ' + tprd + ' to ' + totp;
     if (currentFilter.movieSelected) {
       filterText = filterText + ' Movie: ' + currentFilter.movieSelected;
-    };
+    }
     sm.filterText.text(filterText);
 
     sm.highlightSpotsForMovie(currentFilter.movieSelected);
     mt.highlightMovie(currentFilter.movieSelected);
-  };
+  }
 
   if (action == 'movieTableSelected') {
-    var tprd = currentFilter.timeP;
-    var totp = tprd.substr(0, 3) + '9';
+    tprd = currentFilter.timeP;
+    totp = tprd.substr(0, 3) + '9';
     currentFilter.movieSelected = value.title;
-    var filterText = 'Time Period: ' + tprd + ' to ' + totp + ' Movie: ' + value.title;
+    filterText = 'Time Period: ' + tprd + ' to ' + totp + ' Movie: ' + value.title;
     sm.filterText.text(filterText);
 
     sm.highlightSpotsForMovie(value.title);
     mt.highlightMovie(value.title);
-  };
+  }
 
   if (action == 'spotSelected') {
     //show modal for movie
     angular.element('#movieModal').scope().updateForMovieID(value.movieid);
     angular.element($('#movieModal')).scope().$apply();
     $('#movieModal').modal('show');
-  };
+  }
 
-  if (action == 'search') {};
+  if (action == 'search') {}
 
 };
 

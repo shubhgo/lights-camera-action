@@ -1,5 +1,5 @@
 // movie table
-var mt = function() {
+var mt = function () {
 
   var exports = {};
 
@@ -49,7 +49,7 @@ var mt = function() {
     .style("text-anchor", "start")
     .text("Number of Scenes");
 
-  exports.reloadMovieWithTimePeriod = function(timePeriod) {
+  exports.reloadMovieWithTimePeriod = function (timePeriod) {
     var duration = 200;
     var timePeriodFile = 'data/movies/movies_' + timePeriod + '.json';
 
@@ -59,8 +59,8 @@ var mt = function() {
       .ease("quad")
       .style('opacity', 0);
 
-    setTimeout(function() {
-      d3.json(timePeriodFile, function(error, data) {
+    setTimeout(function () {
+      d3.json(timePeriodFile, function (error, data) {
 
         // change table height lca-movie-table
         var tableHeight = rowWidth * data.length + 20;
@@ -79,19 +79,19 @@ var mt = function() {
 
         movieRowBackground
           .attr("x", 0)
-          .attr("y", function(data, index) {
+          .attr("y", function (data, index) {
             return y(index);
           })
           .attr('width', width)
           .attr('height', rowWidth - 1)
           .style('fill', 'grey')
-          .on('mouseover.hideotherspots', function(d, i) {
+          .on('mouseover.hideotherspots', function (d, i) {
             filter('movieTableHover', d, i);
           })
-          .on('mouseout.showallspots', function(d, i) {
+          .on('mouseout.showallspots', function (d, i) {
             filter('movieTableHoverEnd', '', '');
           })
-          .on('click', function(d, i) {
+          .on('click', function (d, i) {
             filter('movieTableSelected', d, i);
           });
 
@@ -104,10 +104,10 @@ var mt = function() {
 
         movieRow
           .attr("x", 0)
-          .attr("y", function(data, index) {
+          .attr("y", function (data, index) {
             return y(index);
           })
-          .attr('width', function(data) {
+          .attr('width', function (data) {
             if (x(data.shotCount) > width) {
               return width;
             } else {
@@ -121,16 +121,16 @@ var mt = function() {
           .data(data);
 
         movieLabel.enter().append('text')
-          .attr('class', 'lca-movie-label')
+          .attr('class', 'lca-movie-label');
 
         movieLabel
           .attr('x', 3)
-          .attr('y', function(data, index) {
+          .attr('y', function (data, index) {
             return y(index) + 16;
           })
           .attr('dy', '.16em')
-          .text(function(data) {
-            return data.title
+          .text(function (data) {
+            return data.title;
           });
 
 
@@ -147,9 +147,9 @@ var mt = function() {
     }, duration);
   };
 
-  exports.highlightMovie = function(movieTitle) {
+  exports.highlightMovie = function (movieTitle) {
 
-    if (movieTitle == null) {
+    if (!movieTitle) {
       svg.selectAll(".lca-movie")
         .style('stroke', null)
         .style('fill', '#FFCD00');
@@ -158,16 +158,16 @@ var mt = function() {
         .style('stroke', null);
     } else {
       svg.selectAll(".lca-movie")
-        .style('fill', function(data) {
+        .style('fill', function (data) {
           if (movieTitle == data.title) {
             return '#FFCD00';
           } else {
             return '#6d6d6d';
-          };
+          }
         });
 
       svg.selectAll(".lca-movie-bck")
-        .style('stroke', function(data) {
+        .style('stroke', function (data) {
           if (movieTitle == data.title) {
             return '#000000';
           } else {
@@ -175,7 +175,7 @@ var mt = function() {
           }
         });
 
-    }; //end if
+    } //end if
 
   };
   return exports;
