@@ -24,23 +24,26 @@
   <link rel="stylesheet" href="css/main.css">
   <script src="js/lib/d3.js"></script>
   <script src="js/lib/d3.tip.js"></script>
-  <script src="js/lib/react.js"></script>
   <script src="js/lib/angular.js"></script>
-  <!-- // <script src="js/lib/spin.min.js"</script> -->
   <script type="text/javascript" src="http://fgnass.github.io/spin.js/spin.min.js"></script>
   <script src="js/lib/angular-spinner.min.js"></script>
   <script src="js/lib/angular-loading-spinner.js"></script>
-  <script src="js/modules/moviemodal.js"></script>
   <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  (function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
   ga('create', 'UA-29776482-2', 'auto');
   ga('send', 'pageview');
-
-</script>
+  </script>
 </head>
 
 <body>
@@ -78,47 +81,47 @@
     </div>
     <div class="row lca-timeperiod">
       <!-- time period bar -->
-      <div id='div1910' class="lca-col-timeperiod" onclick="filter('timerperiod',1910,0)">
+      <div id='div1910' class="lca-col-timeperiod">
         <img id='img1910' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
         <p class="lca-timeperiod-p">1910-19</p>
       </div>
-      <div id='div1920' class="lca-col-timeperiod" onclick="filter('timerperiod',1920,0)">
+      <div id='div1920' class="lca-col-timeperiod">
         <img id='img1920' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
         <p class="lca-timeperiod-p">1920-29</p>
       </div>
-      <div id='div1930' class="lca-col-timeperiod" onclick="filter('timerperiod',1930,0)">
+      <div id='div1930' class="lca-col-timeperiod">
         <img id='img1930' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
         <p class="lca-timeperiod-p">1930-39</p>
       </div>
-      <div id='div1940' class="lca-col-timeperiod" onclick="filter('timerperiod',1940,0)">
+      <div id='div1940' class="lca-col-timeperiod">
         <img id='img1940' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
         <p class="lca-timeperiod-p">1940-49</p>
       </div>
-      <div id='div1950' class="lca-col-timeperiod" onclick="filter('timerperiod',1950,0)">
+      <div id='div1950' class="lca-col-timeperiod">
         <img id='img1950' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
         <p class="lca-timeperiod-p">1950-59</p>
       </div>
-      <div id='div1960' class="lca-col-timeperiod" onclick="filter('timerperiod',1960,0)">
+      <div id='div1960' class="lca-col-timeperiod">
         <img id='img1960' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
         <p class="lca-timeperiod-p">1960-69</p>
       </div>
-      <div id='div1970' class="lca-col-timeperiod" onclick="filter('timerperiod',1970,0)">
+      <div id='div1970' class="lca-col-timeperiod">
         <img id='img1970' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
         <p class="lca-timeperiod-p">1970-79</p>
       </div>
-      <div id='div1980' class="lca-col-timeperiod" onclick="filter('timerperiod',1980,0)">
+      <div id='div1980' class="lca-col-timeperiod">
         <img id='img1980' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
         <p class="lca-timeperiod-p">1980-89</p>
       </div>
-      <div id='div1990' class="lca-col-timeperiod" onclick="filter('timerperiod',1990,0)">
+      <div id='div1990' class="lca-col-timeperiod">
         <img id='img1990' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
         <p class="lca-timeperiod-p">1990-99</p>
       </div>
-      <div id='div2000' class="lca-col-timeperiod" onclick="filter('timerperiod',2000,0)">
+      <div id='div2000' class="lca-col-timeperiod">
         <img id='img2000' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
         <p class="lca-timeperiod-p">2000-09</p>
       </div>
-      <div id='div2010' class="lca-col-timeperiod" onclick="filter('timerperiod',2010,0)">
+      <div id='div2010' class="lca-col-timeperiod">
         <img id='img2010' class='lca-timeperiod-img' src="images/timeZoneDefault.png">
         <p class="lca-timeperiod-p">2010-15</p>
       </div>
@@ -131,8 +134,8 @@
       <div>Original Dataset from <a class='sg-footer-a' href="https://data.sfgov.org/Culture-and-Recreation/Film-Locations-in-San-Francisco/yitu-d5am">SF OpenData</a></div>
     </div>
   </div>
-  <script src="js/modules/movieTable.js"></script>
-  <script src="js/modules/shotmap.js"></script>
+  <script src="js/modules/bundle.js"></script>
+  <script src="js/modules/moviemodal.js"></script>
   <!-- Movie Detail Modal -->
   <div ng-controller="MovieModalCtrl as mmc" class="modal fade" id="movieModal" tabindex="-1" role="dialog" aria-labelledby="movieTitle" aria-hidden="true">
     <div class="modal-dialog">
