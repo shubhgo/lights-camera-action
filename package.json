@@ -1,0 +1,24 @@
+{
+  "name": "LightsCameraAction",
+  "version": "0.1.1",
+  "author": "Shubham Goel",
+  "description": "A cool visualization of all movies and tv shows shot in San Francisco over the last decade",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:shubhgo/lights-camera-action.git"
+  },
+  "dependencies": {
+    "angular": "^1.4.0",
+    "angular-loading-spinner": "0.0.3",
+    "angular-spinner": "^0.6.1",
+    "bootstrap.js": "3.3.x",
+    "d3": "^3.5.5",
+    "d3-tip": "^0.6.7",
+    "express": "^4.12.4",
+    "jquery": "^1.7.3",
+    "spin.js": "^2.1.2"
+  },
+  "devDependencies": {
+    "browserify": "^10.2.3"
+  }
+}
