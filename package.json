@@ -11,7 +11,7 @@
     "angular": "^1.4.0",
     "angular-loading-spinner": "0.0.3",
     "angular-spinner": "^0.6.1",
-    "bootstrap.js": "3.3.x",
+    "bootstrap": "3.3.x",
     "d3": "^3.5.5",
     "d3-tip": "^0.6.7",
     "express": "^4.12.4",

@@ -3,3 +3,4 @@
 /js/modules/.module-cache/
 
 node_modules/*
+.claude/*
