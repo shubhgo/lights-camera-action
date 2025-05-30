@@ -16,7 +16,7 @@ app.controller('MovieModalCtrl', ['$scope', '$http',
           Title: 'Loading',
           Poster: 'data/posters/' + movieid + '.jpg'
         };
-        var movieURL = 'http://www.omdbapi.com/?i=' + movieid + '&plot=full&r=json';
+        var movieURL = 'https://www.omdbapi.com/?i=' + movieid + '&plot=full&r=json';
 
         $http.get(movieURL).
         success(function (data, status, headers, config) {
